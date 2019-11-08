@@ -76,3 +76,4 @@ build.xml
 testStats.txt
 statistics.txt
 lost_orders.txt
+/target/
