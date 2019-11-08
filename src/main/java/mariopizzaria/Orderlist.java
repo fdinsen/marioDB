@@ -123,5 +123,12 @@ public class Orderlist {
     public Boolean isOrderedByPhone(int index) {
         return getOrder(index).isOrderedByPhone();
     }
+    
+    
+    void clearOrderlist() {
+        for (int i = 0; i < listOfOrders.size() ; i++) {
+            listOfOrders.remove(i);
+        }
+    }
 
 }

@@ -105,4 +105,12 @@ public class Pizza {
 
     }
 
+    public double getToppingsAddedTotalPrice() {
+        double price = 0;
+        for (ExtraTopping topping : listOfToppingsAdded) {
+            price = topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
+        }
+        return price;
+    }
+
 }

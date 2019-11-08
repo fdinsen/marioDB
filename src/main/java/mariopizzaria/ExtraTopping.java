@@ -58,5 +58,9 @@ public class ExtraTopping {
     void addExtraTopping(int qtr){
         quantity += Math.abs(qtr);
     }
+
+    void setExtraToppingQuntity(int i) {
+        quantity = i;
+    }
      
 }

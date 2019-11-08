@@ -113,7 +113,7 @@ public class Statistics {
     }
 
     //This one should only be called directly in tests, use updateStats() instead
-    private void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
+    public void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
         int pizzaNumber;
 
         //Checks if file with the given name exists
@@ -139,7 +139,7 @@ public class Statistics {
         }
     }
 
-    private void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
+    public void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
         //TODO: read through file, line by line, and add each piece
         //of information to the Array
 
@@ -163,7 +163,7 @@ public class Statistics {
 
     }
 
-    private void updateFile(File file, ArrayList<IndividualStatistics> arrayList) {
+    public void updateFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //loops through every entry in the array, and creates a 
         arrayListSize = menu.getListOfPizzaName().size();
         strBuilder.delete(0, strBuilder.length());
@@ -184,7 +184,7 @@ public class Statistics {
         }
     }
 
-    private void createArray(ArrayList<IndividualStatistics> arrayList) {
+    public void createArray(ArrayList<IndividualStatistics> arrayList) {
         //Creates array with all pizza names, and zero in every sale
         arrayList.clear();
         for (int i = 0; i < arrayListSize; i++) {
@@ -193,7 +193,7 @@ public class Statistics {
     }
 
     //This method should only run once EVER. Otherwise it clears the statistics
-    private void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
+    public void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //If the given array is empty, fill it
         if (arrayList.size() == 0) {
             createArray(arrayList);
