@@ -17,8 +17,10 @@ public class Pizza {
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public Pizza(){
-        
+    public Pizza(int id, String name, int price){
+        this.name = name;
+        this.totalPizzaPrice += price;
+        this.pizzaNo = id;
     }
     
     //---------//

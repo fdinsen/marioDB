@@ -7,6 +7,7 @@ public class Topping {
     //--------------------//
     private String name;
     private double price;
+    private int id;
     
     //--------------//
     // CONSTRUCTERS //
@@ -14,7 +15,13 @@ public class Topping {
     public Topping(){
         
     }
-    
+
+    public Topping(int id, String name, int price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
     //---------//
     // GETTERS //
     //---------//
