@@ -172,3 +172,13 @@ fabric.properties
 
 .idea
 .idea/
+
+.idea/.name
+.idea/compiler.xml
+.idea/dataSources.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/sqldialects.xml
+.idea/vcs.xml
+MarioDB.iml
