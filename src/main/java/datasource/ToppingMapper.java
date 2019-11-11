@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import model.Pizza;
 import model.Topping;
 
 public class ToppingMapper  {
@@ -41,6 +39,7 @@ public class ToppingMapper  {
         }
         return toppings;
     }
+
     public void insertTopping(){
         //TODO create if time is with us
         
