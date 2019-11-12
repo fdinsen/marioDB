@@ -9,7 +9,6 @@ import datasource.DataSource;
 import factory.DataSourceFactory;
 import factory.DataSources;
 import org.junit.Test;
-import java.lang.*;
 import static org.junit.Assert.*;
 
 /**
@@ -29,6 +28,17 @@ public class MenuTest {
         int expectedLength = 30;
         int actualLength = menu.getNumberOfPizzas();
         assertEquals(expectedLength, actualLength);
+    }
+    
+    @Test
+    public void menuSetDefaultToppingsTest(){
+        DataSourceFactory dataSourceFactory = new DataSourceFactory();
+        DataSource dataSource = dataSourceFactory.getDataSource(DataSources.DATABASE);
+        Menu menu = new model.Menu(dataSource);
+        String actualName = menu.getPizza(1).getTopping(0).getToppingName();
+        java.lang.System.out.println(actualName);
+        String ExpectedName = "Mozzarella";
+        assertEquals(ExpectedName, actualName);
     }
     
 }

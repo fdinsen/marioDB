@@ -25,7 +25,7 @@ public class CustomerMapper {
         try {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM customers");
             System.out.println(rs);
             while(rs.next()){
                 System.out.println("1");
@@ -33,7 +33,7 @@ public class CustomerMapper {
                 System.out.println(name);
             }
         } catch (SQLException ex) {
-            System.out.println("Connection failed");
+            System.out.println(ex);
         }
         return exits == 1;
     }

@@ -5,11 +5,7 @@
  */
 package datasourceTest;
 
-import datasource.DataSource;
 import datasource.PizzaMapper;
-import factory.DataSourceFactory;
-import factory.DataSources;
-import model.Menu;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,10 +19,33 @@ public class PizzaMapperTest {
         
     }
     @Test
-    public void getAllPizzas(){
+    public void getAllPizzasTest(){
+        PizzaMapper pizzamap = new PizzaMapper();
         
+        int expectedLength = 30;
+        int actualLength = pizzamap.getAllPizzas().size();
         
+        assertEquals(expectedLength, actualLength);
+    }
+    
+    @Test
+    public void getDefaultToppingsForPizzaSizeTest(){
+        PizzaMapper pizzamap = new PizzaMapper();
         
+        int expectedLength = 3;
+        int actualLength = pizzamap.getDefaultToppingsForPizza(1).size();
+        
+        assertEquals(expectedLength, actualLength);
+    }
+    
+    @Test
+    public void getDefaultToppingsForPizzaExactPizzaToppingTest(){
+        PizzaMapper pizzamap = new PizzaMapper();
+        
+        int expectedID = 26;
+        int actualID= pizzamap.getDefaultToppingsForPizza(1).get(1);
+        
+        assertEquals(expectedID, actualID);
     }
     
     

@@ -20,12 +20,20 @@ public class Menu {
     private void setDefaultToppings(){
         for (Pizza pizza : pizzaMenuCard) {
             for(int i : pizza.getDefaultToppingsID()){
-                pizza.addExtraTopping(toppingMenuCard.get(i-1));
+                pizza.addTopping(toppingMenuCard.get(i-1));
             }
         }
     }
     
     public int getNumberOfPizzas(){
         return pizzaMenuCard.size();
+    }
+    
+    public Pizza getPizza(int i){
+        return pizzaMenuCard.get(i-1);
+    }
+    
+    public Topping getTopping(int i){
+        return toppingMenuCard.get(i-1);
     }
 }

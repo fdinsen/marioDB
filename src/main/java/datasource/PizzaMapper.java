@@ -47,7 +47,7 @@ public class PizzaMapper  {
         
     }
 
-    private ArrayList<Integer> getDefaultToppingsForPizza(int id) {
+    public ArrayList<Integer> getDefaultToppingsForPizza(int id) {
         Statement stmt;
         ArrayList<Integer> defaultToppingsID = new ArrayList<>();
         try {
