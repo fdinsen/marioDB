@@ -1,13 +1,15 @@
 package model;
 
 import java.util.ArrayList;
+import datasource.DataSource;
 
 public class OrderList {
     
     private ArrayList<Order> activeOrders = new ArrayList<>();
+    private final DataSource datasource;
     
-    public OrderList(){
-        
+    public OrderList(DataSource datasource){
+        this.datasource = datasource;
         
     }
     public void completeOrder(int index){
