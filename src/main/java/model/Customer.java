@@ -6,8 +6,8 @@ public class Customer {
     private String CustomerName;
     private int PhoneNo;
     
-    public Customer(){
-        
+    public Customer(int phoneNo){
+        this.PhoneNo = phoneNo;
         
     }
 }

@@ -16,8 +16,8 @@ public class Order {
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public Order(){
-        
+    public Order(Customer customer){
+        this.customer = customer;
     }
     
     //---------//
