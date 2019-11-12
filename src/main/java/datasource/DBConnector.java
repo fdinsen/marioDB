@@ -27,8 +27,4 @@ public class DBConnector {
         }
         return con;
     }
-
-    public static void main(String[] args) {
-        new DBConnector().getConnection();
-    }
 }
