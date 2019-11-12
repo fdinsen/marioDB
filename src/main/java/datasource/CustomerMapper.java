@@ -5,28 +5,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Customer;
+import model.Pizza;
 
 public class CustomerMapper {
     
     Connection con = null;
     int exits;
+    Statement stmt;
+    
     public boolean customerExists(int phonoNo){
+        Statement stmt;
+        ArrayList<Pizza> pizzas = new ArrayList<>();
+        Pizza pizza;
+        
         try {
-            //String SQL = "SELECT count(*) FROM customer where customer_phone = ?";
-            String SQL = "SELECT * FROM customer";
             con = DBConnector.getConnection();
-            PreparedStatement ps = con.prepareStatement(SQL);
-            //ps.setString(1, String.valueOf(phonoNo));
-            
-            ResultSet rs = ps.executeQuery();
-            //int exits = rs.getInt("count(*)");
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
+            System.out.println(rs);
             while(rs.next()){
-                System.out.println(rs.getString("customer_name"));
+                System.out.println("1");
+                String name = rs.getString("customer_name");
+                System.out.println(name);
             }
-            System.out.println("hello");
         } catch (SQLException ex) {
-            System.out.println("Connection failed"); 
+            System.out.println("Connection failed");
         }
         return exits == 1;
     }
