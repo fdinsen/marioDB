@@ -16,6 +16,6 @@ public class main {
         DataSourceFactory dataSourceFactory = new DataSourceFactory();
         DataSource dataSource = dataSourceFactory.getDataSource(DataSources.DATABASE);
         UI ui = new MainUI();
-        Controller system = new Controller(dataSource, ui);
+        Controller controller = new Controller(dataSource, ui);
     }
 }

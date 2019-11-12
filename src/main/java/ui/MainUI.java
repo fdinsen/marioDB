@@ -1,23 +1,29 @@
 package ui;
 
 import model.Controller;
+import model.Menu;
+import model.OrderList;
+
 /**
  *
  * @author <Frederik Keis Dinsen>
  */
 public class MainUI implements UI {
     private Controller controller;
+    private Menu menu;
+    private OrderList orderlist;
     
-    public void startUI(Controller controller) {
-        mainMenuDialog();
+    public void startUI(Controller controller,Menu menu, OrderList orderlist) {
         this.controller = controller;
+        this.menu = menu;
+        this.orderlist = orderlist;
+        mainMenuDialog();
     }
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
     private InputValidation inputVal = InputValidation.getInstance();
-    MenuUI menuUI = MenuUI.getInstance();
-    
+
     //---------//
     // METHODS //
     //---------//
@@ -40,7 +46,8 @@ public class MainUI implements UI {
                 switch (selection) {
                     case 1:
                         //Vis menuen
-                        menuUI.showPizzaMenuDialog(controller);
+                        MenuUI menuUI = new MenuUI(menu);
+                        menuUI.showPizzaMenuDialog();
 
                         break;
                     case 2:

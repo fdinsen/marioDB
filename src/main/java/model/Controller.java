@@ -14,10 +14,11 @@ public class Controller {
         this.ui = ui;
         menu = new Menu(datasource);
         orderlist = new OrderList(datasource);
+        startProgram();
     }
     
     public void startProgram() {
-        ui.startUI(this);
+        ui.startUI(this,menu,orderlist);
     }
     
     public boolean checkIfCustomerExists(){
