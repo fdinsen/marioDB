@@ -5,8 +5,11 @@
  */
 package datasourceTest;
 
+import datasource.DataSource;
 import datasource.PizzaMapper;
-import java.awt.Menu;
+import factory.DataSourceFactory;
+import factory.DataSources;
+import model.Menu;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,9 +23,8 @@ public class PizzaMapperTest {
         
     }
     @Test
-    private void getAllPizzas(){
-        PizzaMapper pz = new PizzaMapper();
-        pz.getAllPizzas();
+    public void getAllPizzas(){
+        
         
         
     }

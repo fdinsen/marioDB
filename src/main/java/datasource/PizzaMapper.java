@@ -30,7 +30,6 @@ public class PizzaMapper  {
                 int id = rs.getInt("pizza_id");
                 String name = rs.getString("pizza_name");
                 int price = rs.getInt("pizza_price");
-                
                 pizza = new Pizza(id, name, price, getDefaultToppingsForPizza(id));
                 pizzas.add(pizza);
             }
@@ -54,7 +53,7 @@ public class PizzaMapper  {
         try {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza_toppings where pizza_id = " + id);
+            ResultSet rs = stmt.executeQuery("SELECT toppings_id FROM pizza_toppings where pizza_id = " + id);
 
             while (rs.next()) {
                 int toppingID = rs.getInt("toppings_id");
