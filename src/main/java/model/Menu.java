@@ -1,23 +1,32 @@
 package model;
 
-import datasource.DBFacade;
+import datasource.DBFacede;
+import datasource.DataSource;
 import java.util.ArrayList;
 
 public class Menu {
     
     private ArrayList<Pizza> pizzaMenuCard = new ArrayList<>();
     private ArrayList<Topping> toppingMenuCard = new ArrayList<>();
-    private DBFacade dbFace = new DBFacade();
+    private DataSource datasource;
     
-    public Menu(){
-        setupToppingCard();
-        setupPizzaCard();
+    
+    public Menu(DataSource dbSource){
+        this.datasource = dbSource;
+        pizzaMenuCard = datasource.getAllPizza();
+        toppingMenuCard = datasource.getAllTopping();
+        setDefaultToppings();
     }
-
-    private void setupPizzaCard(){
-        pizzaMenuCard= dbFace.getAllPizza();
+    
+    private void setDefaultToppings(){
+        for (Pizza pizza : pizzaMenuCard) {
+            for(int i : pizza.getDefaultToppingsID()){
+                pizza.addExtraTopping(toppingMenuCard.get(i-1));
+            }
+        }
     }
-    private void setupToppingCard(){
-        toppingMenuCard = dbFace.getAllTopping();
+    
+    public int getNumberOfPizzas(){
+        return pizzaMenuCard.size();
     }
 }
