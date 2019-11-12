@@ -7,14 +7,20 @@ import model.Controller;
  */
 public class MainUI implements UI {
     private Controller controller;
+    
     public void startUI(Controller controller) {
         mainMenuDialog();
         this.controller = controller;
     }
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
+    private InputValidation inputVal = InputValidation.getInstance();
+    MenuUI menuUI = MenuUI.getInstance();
+    
     //---------//
     // METHODS //
     //---------//
-
     public void mainMenuDialog() {
         boolean exit = false;
 
@@ -34,7 +40,7 @@ public class MainUI implements UI {
                 switch (selection) {
                     case 1:
                         //Vis menuen
-                        menuUI.showPizzaMenuDialog(system);
+                        menuUI.showPizzaMenuDialog(controller);
 
                         break;
                     case 2:
