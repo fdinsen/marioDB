@@ -16,18 +16,10 @@ public class PizzaMapper  {
 
     }
     
-    public static void main(String[] args) {
-        ToppingMapper tp = new ToppingMapper();
-        tp.getAllToppings();
-        PizzaMapper pz = new PizzaMapper();
-        pz.getAllPizzas();
-    }
-    
     public ArrayList<Pizza> getAllPizzas(){
         Statement stmt;
         ArrayList<Pizza> pizzas = new ArrayList<>();
         Pizza pizza;
-        
         
         try {
             con = DBConnector.getConnection();
@@ -41,7 +33,6 @@ public class PizzaMapper  {
                 
                 pizza = new Pizza(id, name, price, getDefaultToppingsForPizza(id));
                 pizzas.add(pizza);
-                System.out.println("Done");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
