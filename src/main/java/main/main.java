@@ -1,7 +1,7 @@
 
 package main;
 
-import model.System;
+import model.Controller;
 import datasource.DataSource;
 import factory.DataSources;
 import factory.DataSourceFactory;
@@ -16,6 +16,6 @@ public class main {
         DataSourceFactory dataSourceFactory = new DataSourceFactory();
         DataSource dataSource = dataSourceFactory.getDataSource(DataSources.DATABASE);
         UI ui = new MainUI();
-        System system = new System(dataSource, ui);
+        Controller system = new Controller(dataSource, ui);
     }
 }
