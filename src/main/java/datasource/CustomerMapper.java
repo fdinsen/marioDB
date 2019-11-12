@@ -14,31 +14,36 @@ import model.Pizza;
 public class CustomerMapper {
     
     Connection con = null;
-    int exits;
+    int count;
     Statement stmt;
     
     public boolean customerExists(int phonoNo){
-        Statement stmt;
-        ArrayList<Pizza> pizzas = new ArrayList<>();
-        Pizza pizza;
-        
         try {
+            String SQL = "SELECT count(*) FROM customers where customer_phone = ?";
             con = DBConnector.getConnection();
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
-            System.out.println(rs);
-            while(rs.next()){
-                System.out.println("1");
-                String name = rs.getString("customer_name");
-                System.out.println(name);
-            }
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, String.valueOf(phonoNo));
+            
+            ResultSet rs = ps.executeQuery();
+            
+            rs.next();
+            count = rs.getInt("count(*)");
+            
         } catch (SQLException ex) {
-            System.out.println("Connection failed");
+            System.out.println(ex+" Connection failed");
         }
-        return exits == 1;
+        return count == 1;
     }
     public Customer getCustomer(int phoneNo){
-        return null;
+        try{
+            String SQL = "SELECT ";
+        }catch (SQLException ex){
+            System.out.println(ex+ " Connection failed");
+        }
+        
+        
+        
+        
     }
     public Customer createCustomer(int phoneNo, String name){
         return null;

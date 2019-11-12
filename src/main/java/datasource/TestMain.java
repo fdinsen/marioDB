@@ -17,7 +17,7 @@ public class TestMain {
     public static void main(String[] args) {
         // TODO code application logic here
         CustomerMapper mapper = new CustomerMapper();
-        mapper.customerExists(12345678);
+        System.out.println(mapper.customerExists(45678910));
     }
     
 }
