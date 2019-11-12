@@ -1,13 +1,13 @@
 package model;
 
-import datasource.DBFacede;
+import datasource.DBFacade;
 import java.util.ArrayList;
 
 public class Menu {
     
     private ArrayList<Pizza> pizzaMenuCard = new ArrayList<>();
     private ArrayList<Topping> toppingMenuCard = new ArrayList<>();
-    private DBFacede dbFace = new DBFacede();
+    private DBFacade dbFace = new DBFacade();
     
     public Menu(){
         setupToppingCard();

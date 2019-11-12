@@ -10,17 +10,25 @@ import java.util.logging.Logger;
 import model.Pizza;
 
 public class PizzaMapper  {
-    Connection con = null;
+    private Connection con = null;
 
     public PizzaMapper(){
 
     }
-
+    
+    public static void main(String[] args) {
+        ToppingMapper tp = new ToppingMapper();
+        tp.getAllToppings();
+        PizzaMapper pz = new PizzaMapper();
+        pz.getAllPizzas();
+    }
+    
     public ArrayList<Pizza> getAllPizzas(){
         Statement stmt;
         ArrayList<Pizza> pizzas = new ArrayList<>();
         Pizza pizza;
-
+        
+        
         try {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
@@ -30,8 +38,10 @@ public class PizzaMapper  {
                 int id = rs.getInt("pizza_id");
                 String name = rs.getString("pizza_name");
                 int price = rs.getInt("pizza_price");
-                pizza = new Pizza(id, name, price);
+                
+                pizza = new Pizza(id, name, price, getDefaultToppingsForPizza(id));
                 pizzas.add(pizza);
+                System.out.println("Done");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,6 +55,24 @@ public class PizzaMapper  {
     public void removePizza(){
         //TODO create if time is with us
         
+    }
+
+    private ArrayList<Integer> getDefaultToppingsForPizza(int id) {
+        Statement stmt;
+        ArrayList<Integer> defaultToppingsID = new ArrayList<>();
+        try {
+            con = DBConnector.getConnection();
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza_toppings where pizza_id = " + id);
+
+            while (rs.next()) {
+                int toppingID = rs.getInt("toppings_id");
+                defaultToppingsID.add(toppingID);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return defaultToppingsID;
     }
     
 }

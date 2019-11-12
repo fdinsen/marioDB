@@ -182,3 +182,4 @@ fabric.properties
 .idea/sqldialects.xml
 .idea/vcs.xml
 MarioDB.iml
+/nbproject/

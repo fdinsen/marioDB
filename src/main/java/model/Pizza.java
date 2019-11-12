@@ -13,14 +13,16 @@ public class Pizza {
     private PizzaSize size;
     private int pizzaNo;
     private double totalPizzaPrice;
+    private ArrayList<Integer> defaultToppingsID;
     
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public Pizza(int id, String name, int price){
+    public Pizza(int id, String name, int price,ArrayList<Integer> defaultToppingsID){
         this.name = name;
         this.totalPizzaPrice += price;
         this.pizzaNo = id;
+        this.defaultToppingsID = defaultToppingsID;
     }
     
     //---------//
@@ -49,6 +51,10 @@ public class Pizza {
     public double getTotalPizzaPrice() {
         return totalPizzaPrice;
     }
+    public ArrayList<Integer> getDefaultToppingsID(){
+        return defaultToppingsID;
+    }
+    
     //---------//
     //ToString //
     //---------//
