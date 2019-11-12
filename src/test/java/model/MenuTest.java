@@ -31,13 +31,12 @@ public class MenuTest {
     }
     
     @Test
-    public void menuSetDefaultToppingsTest(){
+    public void menuSetDefaultToppingsNameTest(){
         DataSourceFactory dataSourceFactory = new DataSourceFactory();
         DataSource dataSource = dataSourceFactory.getDataSource(DataSources.DATABASE);
         Menu menu = new model.Menu(dataSource);
         String actualName = menu.getPizza(1).getTopping(0).getToppingName();
-        java.lang.System.out.println(actualName);
-        String ExpectedName = "Mozzarella";
+        String ExpectedName = "Tuna fish";
         assertEquals(ExpectedName, actualName);
     }
     

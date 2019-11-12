@@ -42,7 +42,7 @@ public class Pizza {
         return toppings.get(index);
     }
     public Topping getExtraTopping(int index){
-        return extraToppigns.get(index);
+        return extraToppings.get(index);
     }
     public String getName() {
         return name;
