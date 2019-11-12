@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 public class DBConnector {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/mario";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String USER = "mario";
+    private static final String PASSWORD = "mario123";
     private static Connection con = null;
 
     private DBConnector() {

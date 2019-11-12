@@ -1,9 +1,10 @@
 package model;
+import datasource.DataSource;
 
 public class System {
     
     
-    public System(){
+    public System(DataSource datasource){
         
     }
     public boolean checkIfCustomerExists(){
