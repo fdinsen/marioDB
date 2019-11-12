@@ -17,11 +17,11 @@ public interface DataSource {
     public void removeTopping();
     
     public ArrayList<Order> getAllActiveOrders();
-    public void insertOrder();
-    public void removeOrder();
+    public void insertOrder(Order rod);
+    public void removeOrder(int orderId);
     
     public ArrayList<Order> getAllSavedOrders();
-    public void insertSavdOrder();
+    public void insertSavdOrder(Order ord);
     
     public boolean customerExits(int phoneNo);
     public Customer getCustomer(int phonoNo);

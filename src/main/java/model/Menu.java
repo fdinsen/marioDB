@@ -18,14 +18,28 @@ public class Menu {
     }
     
     private void setDefaultToppings(){
+        int j = 0;
+        for (Topping topping : toppingMenuCard ) {
+            java.lang.System.out.println(j + ". " + topping.getToppingName());
+            j++;
+        }
         for (Pizza pizza : pizzaMenuCard) {
             for(int i : pizza.getDefaultToppingsID()){
-                pizza.addExtraTopping(toppingMenuCard.get(i-1));
+                java.lang.System.out.println(i);
+                pizza.addTopping(toppingMenuCard.get(i-1));
             }
         }
     }
     
     public int getNumberOfPizzas(){
         return pizzaMenuCard.size();
+    }
+    
+    public Pizza getPizza(int i){
+        return pizzaMenuCard.get(i-1);
+    }
+    
+    public Topping getTopping(int i){
+        return toppingMenuCard.get(i-1);
     }
 }
