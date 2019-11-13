@@ -5,6 +5,8 @@
  */
 package datasource;
 
+import model.Customer;
+
 /**
  *
  * @author simon
@@ -16,8 +18,17 @@ public class TestMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+//        Customer cust = null;
         CustomerMapper mapper = new CustomerMapper();
-        System.out.println(mapper.customerExists(45678910));
+//        if(mapper.customerExists(12345678)){
+//            cust = mapper.getCustomer(90999897);
+//        }
+//        System.out.println(cust);
+        
+        Customer cust = mapper.createCustomer(33445566, "simon");
+        if(mapper.customerExists(33445566)){
+            System.out.println(mapper.getCustomer(33445566));
+        }
     }
     
 }

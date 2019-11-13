@@ -14,4 +14,16 @@ public class Customer {
     public void setCustomerName(String customerName) {
         CustomerName = customerName;
     }
+
+    public String getCustomerName() {
+        return CustomerName;
+    }
+
+    public int getPhoneNo() {
+        return PhoneNo;
+    }
+    @Override
+    public String toString(){
+        return ""+CustomerName+" : "+PhoneNo;
+    }
 }
