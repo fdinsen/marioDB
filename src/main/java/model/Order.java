@@ -18,6 +18,7 @@ public class Order {
     //--------------//
     public Order(Customer customer){
         this.customer = customer;
+        pickUpTime = LocalDateTime.now().plusMinutes(15);
         //TODO ADD ITSELF TO THE DB
     }
     
@@ -100,6 +101,6 @@ public class Order {
     }
 
     public String getCustomerName() {
-       return  customer.getCustomerName;
+       return  customer.getCustomerName();
     }
 }

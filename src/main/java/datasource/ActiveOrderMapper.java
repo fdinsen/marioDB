@@ -1,6 +1,7 @@
 package datasource;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,8 +21,8 @@ public class ActiveOrderMapper {
     public ArrayList<Order> getActiveOrders(ArrayList<Pizza> pizzas, ArrayList<Topping> toppings) {
         Statement stmt;
         ArrayList<Order> orders = new ArrayList<>();
-        Order order;
-        int numberOfOrders = 0;
+        //Order order;
+        //int numberOfOrders = 0;
         try {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
@@ -34,7 +35,7 @@ public class ActiveOrderMapper {
                 orderId = rsOrders.getInt("order_id");
                 totalPrice = rsOrders.getDouble("total_price");
                 customerPhone = rsOrders.getInt("customer_phone");
-                orders.add(new Order(customerPhone));
+                orders.add(new Order(new CustomerMapper().getCustomer(customerPhone)));
 
                 ResultSet rsPizza = stmt.executeQuery("SELECT * FROM orderlines_pizzas WHERE order_id = " + count + 1);
 
@@ -45,7 +46,7 @@ public class ActiveOrderMapper {
                     pizzaSize = rsPizza.getInt("pizza_size");
                     PizzaSize psize;
                     switch (pizzaSize) {
-                        case 1: 
+                        case 1:
                             psize = PizzaSize.FAMILY;
                         case 2:
                             psize = PizzaSize.DEPPAN;
@@ -57,9 +58,9 @@ public class ActiveOrderMapper {
                     //TODO use subquery to get all the toppings for this pizza
                     ResultSet rsTopping = stmt.executeQuery("SELECT * FROM orderlines_toppings WHERE orderline_id = " + orderlineId);
 
-                    while(rsTopping.next() ){
+                    while (rsTopping.next()) {
                         int toppingId;
-                        
+
                         toppingId = rsTopping.getInt("topping_id");
                         orders.get(count).addExtraTopping(toppings.get(toppingId), orderlineId);
                     }
@@ -73,8 +74,31 @@ public class ActiveOrderMapper {
     }
 
     public void insertOrder(Order ord) {
+        try {
+            Statement stmt;
+            con = DBConnector.getConnection();
+            String SQL = "INSERT INTO active_orders (total_price, pickup_time, customer_phone) "
+                    + "VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            stmt = con.createStatement();
+            ps.setDouble(1, ord.getTotalPrice());
+            ps.setString(2, ord.getPickupTime().toString());
+            ps.setInt(3, ord.getCustomerPhone());
+            ps.execute();
+            ps.close();
+            
+//            for (Pizza pizza : ord.getPizzasOnOrder() ) {
+//                stmt.executeQuery("INSERT INTO orderlines_pizzas (order_id)")
+//            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
+
+    
 
     public void removeOrder(int orderId) {
 
