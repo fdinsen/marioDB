@@ -31,8 +31,10 @@ public class Controller {
     }
     
     public Customer getCustomer(int phone){
-        
-        
-        return null;
+        return datasource.getCustomer(phone);
+    }
+    
+    public void createActiveOrder(Order order){
+        datasource.insertOrder(order);
     }
 }

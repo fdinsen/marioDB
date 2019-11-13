@@ -51,6 +51,7 @@ public class NewOrderUI {
                             customer = controller.createCustomer(phoneNumber);
                         }
                         orderArrayPosition = orderlist.createOrder(customer);
+                        
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
@@ -60,6 +61,7 @@ public class NewOrderUI {
                         phoneNumber = 00000000;
                         customer = controller.getCustomer(phoneNumber);
                         orderArrayPosition = orderlist.createOrder(customer);
+                        
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
@@ -225,6 +227,9 @@ public class NewOrderUI {
             //If true, add new pizza (TRUE)
             //Otherwise, exit and return to menu (FALSE)
         } while (addNewPizza);
+        
+        //When all done, insert the order in the database
+        controller.createActiveOrder(orderlist.getOrder(orderArrayPosition));
     }
 
     // Return the size so it can be saved with the order

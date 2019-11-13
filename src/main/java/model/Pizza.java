@@ -85,8 +85,8 @@ public class Pizza {
     }
 
 
-    public Object getToppingsAdded() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Topping> getToppingsAdded() {
+        return extraToppings;
     }
 
 
