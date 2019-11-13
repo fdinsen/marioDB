@@ -7,6 +7,7 @@ package datasource;
 
 import model.Customer;
 import model.Order;
+import model.PizzaSize;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -42,7 +43,7 @@ public class ActiveOrderMapperTest {
     @Test
     public void testInsertOrder() {
         Order order = new Order(new Customer(12345678));
-        
+        //order.addPizza(new Menu, PizzaSize.FAMILY);
         aomapper.insertOrder(order);
         
         

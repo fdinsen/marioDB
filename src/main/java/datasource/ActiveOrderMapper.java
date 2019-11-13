@@ -85,20 +85,27 @@ public class ActiveOrderMapper {
             ps.setInt(3, ord.getCustomerPhone());
             ps.execute();
             ResultSet orderId = ps.getGeneratedKeys();
+            int currentOrderId = 0;
+            if (orderId.next()) {
+                currentOrderId = orderId.getInt(1);
+            }
             ps.close();
             for (Pizza pizza : ord.getAllPizzasOnOrder()) {
                 SQL = "INSERT INTO orderlines_pizzas (order_id, pizza_id) VALUES (?, ?)";
                 ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-                int currentOrderId = orderId.getInt("order_id");
                 ps.setInt(1, currentOrderId);
                 ps.setInt(2, pizza.getPizzaNo());
                 ps.execute();
                 ResultSet orderlineId = ps.getGeneratedKeys();
+                int currentOrderlineId = 0;
+                if (orderlineId.next()) {
+                    currentOrderlineId = orderlineId.getInt(1);
+                }
                 ps.close();
                 for (Topping topping : pizza.getToppingsAdded()) {
                     SQL = "INSERT INTO orderlines_toppings (orderline_id, topping_id, order_id) VALUES (?, ?, ?)";
                     ps = con.prepareStatement(SQL);
-                    ps.setInt(1, orderlineId.getInt("orderline_id"));
+                    ps.setInt(1, currentOrderlineId);
                     ps.setInt(2, topping.getToppingId());
                     ps.setInt(3, currentOrderId);
                     ps.execute();
