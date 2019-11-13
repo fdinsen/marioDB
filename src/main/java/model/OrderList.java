@@ -6,12 +6,12 @@ import model.Customer;
 
 public class OrderList {
     
-    private ArrayList<Order> activeOrders = new ArrayList<>();
+    private ArrayList<Order> activeOrders;
     private final DataSource datasource;
     
     public OrderList(DataSource datasource,Menu menu){
         this.datasource = datasource;
-        datasource.getAllActiveOrders(menu.getAllPizzas(),menu.getAllToppings());
+        activeOrders = datasource.getAllActiveOrders(menu.getAllPizzas(),menu.getAllToppings());
     }
     public void completeOrder(int index){
         
