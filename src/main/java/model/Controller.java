@@ -13,7 +13,7 @@ public class Controller {
         this.datasource = datasource;
         this.ui = ui;
         menu = new Menu(datasource);
-        orderlist = new OrderList(datasource);
+        orderlist = new OrderList(datasource,menu);
         startProgram();
     }
     

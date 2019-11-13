@@ -295,7 +295,7 @@ public class NewOrderUI {
             // Grab the pizza position in the order array
             // The pizza has just been added, so we know it's the last place
             pizzaPos = orderlist.getOrder(orderArrayPosition).getAmountOfPizzasOnOrder() - 1;
-            orderlist.getOrder(orderArrayPosition).addExtraTopping(pizzaPos, menu.getTopping(extraSelection));
+            orderlist.addExtraTopping(orderArrayPosition,pizzaPos, menu.getTopping(extraSelection));
             
             //More moreExtraQuantitySelection loop
             do {
