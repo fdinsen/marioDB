@@ -20,7 +20,7 @@ public class OrderList {
     //TODO Creates order returnes orderlistIndex
     public int createOrder(Customer customer){
         activeOrders.add((new Order(customer)));
-        return activeOrders.size()-1;
+        return activeOrders.size();
     }
     public void deleteOrder(int orderNo){
         
@@ -32,7 +32,7 @@ public class OrderList {
     }
 
     public Order getOrder(int orderListIndex){
-        return activeOrders.get(orderListIndex);
+        return activeOrders.get(orderListIndex-1);
 
     }
     
@@ -59,7 +59,7 @@ public class OrderList {
     }
 
     public String getCustomerName(int index) {
-       return  activeOrders.get(index).getCustomerName();
+       return  activeOrders.get(index-1).getCustomerName();
     }
     
 
@@ -68,15 +68,15 @@ public class OrderList {
     }
 
     public int getCustomerPhone(int index) {
-        return activeOrders.get(index).getCustomerPhone();
+        return activeOrders.get(index-1).getCustomerPhone();
     }
 
     public String getPickUpTimeHour(int index) {
-        return activeOrders.get(index).getPickupTimeHour();
+        return activeOrders.get(index-1).getPickupTimeHour();
     }
     
     public String getPickUpTimeMinute(int index) {
-        return activeOrders.get(index).getPickupTimeMinute();
+        return activeOrders.get(index-1).getPickupTimeMinute();
     }
 
     public void completeOrder(int i, boolean lostOrder) {
@@ -84,6 +84,6 @@ public class OrderList {
     }
 
     public double getTotalPrice(int index) {
-        return activeOrders.get(index).getTotalPrice();
+        return activeOrders.get(index-1).getTotalPrice();
     }
 }
