@@ -31,6 +31,9 @@ public class Topping {
     public double getToppingPrice(){
         return price;
     }
+    public int getToppingId() {
+        return id;
+    }
     
     //---------//
     //ToString //
