@@ -9,18 +9,18 @@ public class OrderList {
     private ArrayList<Order> activeOrders = new ArrayList<>();
     private final DataSource datasource;
     
-    public OrderList(DataSource datasource){
+    public OrderList(DataSource datasource,Menu menu){
         this.datasource = datasource;
-        
+        datasource.getAllActiveOrders(menu.getAllPizzas(),menu.getAllToppings());
     }
     public void completeOrder(int index){
-
+        
         
     }
     //TODO Creates order returnes orderlistIndex
     public int createOrder(Customer customer){
         activeOrders.add((new Order(customer)));
-        return activeOrders.size();
+        return activeOrders.size()-1;
     }
     public void deleteOrder(int orderNo){
         
@@ -32,7 +32,7 @@ public class OrderList {
     }
 
     public Order getOrder(int orderListIndex){
-        return activeOrders.get(orderListIndex-1);
+        return activeOrders.get(orderListIndex);
 
     }
     
@@ -85,5 +85,9 @@ public class OrderList {
 
     public double getTotalPrice(int index) {
         return activeOrders.get(index-1).getTotalPrice();
+    }
+
+    public void addExtraTopping(int orderArrayPosition, int pizzaPos, Topping topping) {
+        activeOrders.get(orderArrayPosition).addExtraTopping(pizzaPos, topping);
     }
 }

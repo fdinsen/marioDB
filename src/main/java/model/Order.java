@@ -25,9 +25,6 @@ public class Order {
     //---------//
     // METHODS //
     //---------//
-    public void addExtraTopping(int orderLineId, Topping top){
-        pizzas.get(orderLineId).addExtraTopping(top);
-    }
     
     public void addPizza(Pizza pizz, PizzaSize size){
         //TODO Copy pizza
@@ -35,14 +32,22 @@ public class Order {
         pizza.setPizzaSize(size);
         pizzas.add(pizza);
     }
-    public void addExtraTopping(Topping top,int orderLineID){
-        
+    public void addExtraTopping(int orderLineID,Topping top){
+        orderLineID = orderLineID;
+
+        pizzas.get(orderLineID).addExtraTopping(top);
+
+        calculateTotalPrice();
         
     }
     private void calculateTotalPrice(){
-        
+        totalPrice = 0;
+        for (Pizza pizza : pizzas) {
+            totalPrice += pizza.getTotalPizzaPrice();
+        }
         
     }
+    
     public void removePizzaFromOrder(int orderLineID){
         
         
@@ -97,8 +102,6 @@ public class Order {
         return "";
     }
 
-    public void addExtraTopping(int pizzaPos, int i, int extraQuantitySelection) {
-    }
 
     public String getCustomerName() {
        return  customer.getCustomerName();

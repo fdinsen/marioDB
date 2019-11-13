@@ -136,9 +136,9 @@ public class ActiveOrdersUI {
             System.out.println("3 - Tilføj pizza til ordre");
             System.out.println("4 - Færdigør ordre");
             System.out.println("5 - Marker ordre som gået tabt");
-            if (orderlist.getOrder(orderNumber).getAmountOfPizzasOnOrder() > 1) {
-                System.out.println("6 - Fjern pizza fra ordre");
-            }
+            //if (orderlist.getOrder(orderNumber-1).getAmountOfPizzasOnOrder() > 1) {
+            //    System.out.println("6 - Fjern pizza fra ordre");
+            //}
 
             selection = inputVal.getUserInput();
 
