@@ -81,9 +81,18 @@ public class CustomerMapper {
         }
         return new Customer(phoneNo);
     }
-    public void updateName(int phoneNo){
+    public void updateName(int phoneNo, String name){
         try{
+            String SQL = "UPDATE customers set customer_name = ? where customer_phone = ?";
+            con = DBConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
             
+            ps.setString(1,name);
+            ps.setInt(2, phoneNo);
+                    
+            ps.execute();
+            
+            ps.close();
             
         }catch(SQLException ex){
             System.out.println(ex + " connection failed");
