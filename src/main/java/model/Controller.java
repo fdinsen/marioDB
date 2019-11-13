@@ -2,22 +2,23 @@ package model;
 import datasource.DataSource;
 import ui.UI;
 
-public class System {
+public class Controller {
     
     private final DataSource datasource;
     private final UI ui;
     private final Menu menu;
     private final OrderList orderlist;
     
-    public System(DataSource datasource, UI ui){
+    public Controller(DataSource datasource, UI ui){
         this.datasource = datasource;
         this.ui = ui;
         menu = new Menu(datasource);
         orderlist = new OrderList(datasource);
+        startProgram();
     }
     
     public void startProgram() {
-        ui.startUI();
+        ui.startUI(this,menu,orderlist);
     }
     
     public boolean checkIfCustomerExists(){

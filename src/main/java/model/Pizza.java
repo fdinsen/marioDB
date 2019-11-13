@@ -8,7 +8,7 @@ public class Pizza {
     // INSTANCE VARIABLES //
     //--------------------//
     private ArrayList<Topping> toppings = new ArrayList<>();
-    private ArrayList<Topping> extraToppigns = new ArrayList<>();
+    private ArrayList<Topping> extraToppings = new ArrayList<>();
     private String name;
     private PizzaSize size;
     private int pizzaNo;
@@ -29,8 +29,17 @@ public class Pizza {
     // METHODS //
     //---------//
     public void addExtraTopping(Topping top){
-        extraToppigns.add(top);
+        extraToppings.add(top);
     }
+    
+    public void addTopping(Topping top){
+        toppings.add(top);
+    }
+
+    public void setPizzaSize(PizzaSize size) {
+        this.size = size;
+    }
+
     //---------//
     // GETTERS //
     //---------//
@@ -38,7 +47,7 @@ public class Pizza {
         return toppings.get(index);
     }
     public Topping getExtraTopping(int index){
-        return extraToppigns.get(index);
+        return extraToppings.get(index);
     }
     public String getName() {
         return name;
@@ -54,6 +63,8 @@ public class Pizza {
     public ArrayList<Integer> getDefaultToppingsID(){
         return defaultToppingsID;
     }
+
+    public ArrayList<Topping> getAllToppingsOnPizza(){return toppings;}
     
     //---------//
     //ToString //
@@ -62,4 +73,6 @@ public class Pizza {
     public String toString(){
         return "";
     }
+
+
 }

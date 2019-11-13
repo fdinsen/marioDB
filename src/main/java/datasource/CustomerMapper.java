@@ -31,6 +31,16 @@ public class CustomerMapper {
             
         } catch (SQLException ex) {
             System.out.println(ex+" Connection failed");
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM customers");
+            System.out.println(rs);
+            while(rs.next()){
+                System.out.println("1");
+                String name = rs.getString("customer_name");
+                System.out.println(name);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
         return count == 1;
     }
