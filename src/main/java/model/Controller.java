@@ -26,11 +26,10 @@ public class Controller {
         
         return false;
     }
-    public Customer createCustomer(int phoneNo, String name){
-        
-        
-        return null;
+    public Customer createCustomer(int phoneNo){
+        return datasource.createCustomer(phoneNo);
     }
+    
     public Customer getCustomer(int phone){
         
         

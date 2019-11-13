@@ -18,7 +18,7 @@ public class ActiveOrdersUI {
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    private ActiveOrdersUI(OrderList orderlist,NewOrderUI newOrderUI) {
+    ActiveOrdersUI(OrderList orderlist,NewOrderUI newOrderUI) {
         this.orderlist = orderlist;
         this.newOrderUI = newOrderUI;
     }

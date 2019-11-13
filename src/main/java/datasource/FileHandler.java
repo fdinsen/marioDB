@@ -93,8 +93,9 @@ public class FileHandler implements DataSource{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
     @Override
-    public Customer createCustomer(int phoneNo, String name) {
+    public Customer createCustomer(int phoneNo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

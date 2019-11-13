@@ -15,7 +15,7 @@ public class NewOrderUI {
     //--------------//
     // CONSTRUCTORS //
     //--------------//
-    NewOrderUI(Menu menu, OrderList orderlist) {
+    NewOrderUI(Menu menu, OrderList orderlist, Controller controller) {
         this.menu = menu;
         this.orderlist = orderlist;
         this.controller = controller;

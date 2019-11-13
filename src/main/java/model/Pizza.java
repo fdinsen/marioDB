@@ -60,6 +60,10 @@ public class Pizza {
     public PizzaSize getPizzaSize(){
         return size;
     }
+    
+    public String getPizzaSizeString(){
+        return size.toString();
+    }
 
     public double getTotalPizzaPrice() {
         return totalPizzaPrice;
@@ -70,6 +74,8 @@ public class Pizza {
 
     public ArrayList<Topping> getAllToppingsOnPizza(){return toppings;}
     
+    
+    
     //---------//
     //ToString //
     //---------//
@@ -78,13 +84,6 @@ public class Pizza {
         return "";
     }
 
-    public AbstractStringBuilder getPizzaName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public AbstractStringBuilder getPizzaPrice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public Object getToppingsAdded() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

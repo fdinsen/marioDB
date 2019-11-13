@@ -13,12 +13,14 @@ public class MainUI implements UI {
     private Menu menu;
     private OrderList orderlist;
     private NewOrderUI newOrderUI;
+    private ActiveOrdersUI activeOrdersUI;
     
     public void startUI(Controller controller,Menu menu, OrderList orderlist) {
         this.controller = controller;
         this.menu = menu;
         this.orderlist = orderlist;
-        this.newOrderUI = new NewOrderUI(menu,orderlist);
+        this.newOrderUI = new NewOrderUI(menu, orderlist,controller);
+        this.activeOrdersUI = new ActiveOrdersUI(orderlist,newOrderUI);
         mainMenuDialog();
     }
     //--------------------//
@@ -54,7 +56,7 @@ public class MainUI implements UI {
                         break;
                     case 2:
                         //Viser aktive ordre
-                       // activeOrdersUI.showActiveOrdersDialog();
+                        activeOrdersUI.showActiveOrdersDialog();
                         break;
                     case 3:
                         //Lav ny ordre
