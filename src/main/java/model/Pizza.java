@@ -49,12 +49,16 @@ public class Pizza {
     public Topping getExtraTopping(int index){
         return extraToppings.get(index);
     }
-    public String getName() {
+    public String getPizzaName() {
         return name;
     }
 
     public int getPizzaNo() {
         return pizzaNo;
+    }
+    
+    public PizzaSize getPizzaSize(){
+        return size;
     }
 
     public double getTotalPizzaPrice() {
@@ -72,6 +76,18 @@ public class Pizza {
     @Override
     public String toString(){
         return "";
+    }
+
+    public AbstractStringBuilder getPizzaName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public AbstractStringBuilder getPizzaPrice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getToppingsAdded() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

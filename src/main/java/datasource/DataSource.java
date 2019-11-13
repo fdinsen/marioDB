@@ -25,6 +25,6 @@ public interface DataSource {
     
     public boolean customerExits(int phoneNo);
     public Customer getCustomer(int phonoNo);
-    public Customer createCustomer(int phoneNo, String name);
+    public Customer createCustomer(int phoneNo);
     
 }

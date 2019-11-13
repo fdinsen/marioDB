@@ -34,7 +34,7 @@ public class MenuUI {
 
             //Prints all pizzas with name and price
             for (int i = 1; i <= menu.getAmountOfPizzas(); i++) {
-                pizzaer.append(i).append(". ").append(this.menu.getPizza(i).getName()).append("\t ").append(menu.getPizza(i).getTotalPizzaPrice()).append(" Kr.\n");
+                pizzaer.append(i).append(". ").append(this.menu.getPizza(i).getPizzaName()).append("\t ").append(menu.getPizza(i).getTotalPizzaPrice()).append(" Kr.\n");
                 pizzaer.append("\tToppings:\t");
                 int j = 1;
                 //Prints all toppings

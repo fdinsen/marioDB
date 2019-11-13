@@ -3,6 +3,7 @@ package ui;
 import model.Order;
 import model.OrderList;
 import model.Pizza;
+import model.Topping;
 
 
 public class ActiveOrdersUI {
@@ -209,31 +210,30 @@ public class ActiveOrdersUI {
         int counter = 1;
         //Builds a string with each pizza in order
         for (Pizza pizza : orderlist.getAllPizzasInOrder(index)) {
-            stringOrder.append(counter).append(". ").append(pizza.getName()).append(" -- ").append(pizza.ge);
+            stringOrder.append(counter).append(". ").append(pizza.getPizzaName()).append(" -- ");
 
             counter++;
 
             //Adds price
-            stringOrder.append("\t").append(pizza.getPizzaPrice()).append(" kr.");
+            stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
 
             //Checks if any toppings are added
-            if (!pizza.getToppingsAdded().isEmpty()) {
+            if (!pizza.getAllToppingsOnPizza().isEmpty()) {
                 //Adds the toppings
                 stringOrder.append("\nEkstra Toppings: ");
-                for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
-                    //For each toppings adds count and name
-                    stringOrder.append("x").append(extraTopping.getExtraToppingQuantity());
-                    stringOrder.append(" ").append(extraTopping.getExtraToppingName());
+                for (Topping extraTopping : pizza.getAllToppingsOnPizza()) {
+                    //For each topping name
+                    stringOrder.append(" ").append(extraTopping.getToppingName());
 
                     //If there is more than 1 topping add ,
-                    if (pizza.getToppingsAdded().size() > 1) {
+                    if (pizza.getAllToppingsOnPizza().size() > 1) {
                         stringOrder.append(", ");
                     }
                 }
 
             }
             //Adds unless its the lastline
-            if (orderlist.getPizzaCountInOrder(index) >= counter) {
+            if (orderlist.getOrder(index).getAmountOfPizzasOnOrder() >= counter) {
                 stringOrder.append("\n-----\n");
             }
         }
@@ -291,7 +291,7 @@ public class ActiveOrdersUI {
             System.out.println("Indtast nummeret ud for pizzaen du vil fjerne fra orderen");
 
             pizzaNumber = inputVal.getUserInput();
-            if (pizzaNumber > 0 && pizzaNumber < orderlist.getPizzaCountInOrder(orderNumber) + 1) {
+            if (pizzaNumber > 0 && pizzaNumber < orderlist.getPizzaCountOnOrder(orderNumber) + 1) {
                 //correct pizza number
                 correctNumber = true;
             } else {
@@ -337,19 +337,18 @@ public class ActiveOrdersUI {
             counter++;
 
             //Adds the price
-            stringOrder.append("\t").append(pizza.getPizzaPrice()).append(" kr.");
+            stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
 
             //Check if toppings exit
-            if (!pizza.getToppingsAdded().isEmpty()) {
+            if (!pizza.getAllToppingsOnPizza().isEmpty()) {
                 //Adds the extra toppings
-                stringOrder.append("\nEkstra Toppings: ");
-                for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
+                stringOrder.append("\nToppings: ");
+                for (Topping Topping : pizza.getAllToppingsOnPizza()) {
                     //For each topping add count and name
-                    stringOrder.append("x").append(extraTopping.getExtraToppingQuantity());
-                    stringOrder.append(" ").append(extraTopping.getExtraToppingName());
+                    stringOrder.append(" ").append(Topping.getToppingName());
 
                     //If more than one topping add ,
-                    if (pizza.getToppingsAdded().size() > 1) {
+                    if (pizza.getAllToppingsOnPizza().size() > 1) {
                         stringOrder.append(", ");
                     }
                 }
@@ -357,7 +356,7 @@ public class ActiveOrdersUI {
             }
             stringOrder.append("\n-----\n");
         }
-        stringOrder.append("Afhentnings tidspunkt: ").append(orderlist.getPickUpTimeHour(index)).append(":").append(orderlist.getPickUpTimeMinutes(index)).append(" ").append("\nTotal Pris: ").append(orderlist.getTotalPrice(index));
+        stringOrder.append("Afhentnings tidspunkt: ").append(orderlist.getPickUpTimeHour(index)).append(":").append(orderlist.getPickUpTimeMinute(index)).append(" ").append("\nTotal Pris: ").append(orderlist.getTotalPrice(index));
         System.out.println(stringOrder);
     }
 

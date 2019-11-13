@@ -63,7 +63,7 @@ public class Order {
         return customer;
     }
     public int getCustomerPhone(){
-        return customer.getPhoneNumber();
+        return customer.getPhoneNo();
     }
     
     public LocalDateTime getPickupTime(){
@@ -84,6 +84,10 @@ public class Order {
         return "" + pickUpTime.getMinute();
     }
     
+    public ArrayList<Pizza> getAllPizzasOnOrder(){
+        return pizzas;
+    }
+    
     //---------//
     //ToString //
     //---------//
@@ -95,7 +99,7 @@ public class Order {
     public void addExtraTopping(int pizzaPos, int i, int extraQuantitySelection) {
     }
 
-    public ArrayList<Pizza> getPizzasOnOrder() {
-        return pizzas;
+    public String getCustomerName() {
+       return  customer.getCustomerName;
     }
 }

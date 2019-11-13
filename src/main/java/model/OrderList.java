@@ -22,7 +22,7 @@ public class OrderList {
         activeOrders.add((new Order(customer)));
         return activeOrders.size()-1;
     }
-    public void deleteOrder(int orderNo,int orderLineID){
+    public void deleteOrder(int orderNo){
         
         
     }
@@ -45,7 +45,45 @@ public class OrderList {
     }
     
     public ArrayList<Pizza> getAllPizzasInOrder(int index){
-       return  activeOrders.get(index-1).
+       return  activeOrders.get(index-1).getAllPizzasOnOrder();
+    }
+    
+    public int getPizzaCountOnOrder(int index){
+       return  activeOrders.get(index-1).getAllPizzasOnOrder().size();
     }
 
+
+
+    public void deletePizzaFromOrder(int orderNumber, int pizzaNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getCustomerName(int index) {
+       return  activeOrders.get(index).getCustomerName();
+    }
+    
+
+    public boolean isOrderedByPhone(int index) {
+        return false;
+    }
+
+    public int getCustomerPhone(int index) {
+        return activeOrders.get(index).getCustomerPhone();
+    }
+
+    public String getPickUpTimeHour(int index) {
+        return activeOrders.get(index).getPickupTimeHour();
+    }
+    
+    public String getPickUpTimeMinute(int index) {
+        return activeOrders.get(index).getPickupTimeMinute();
+    }
+
+    public void completeOrder(int i, boolean lostOrder) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public double getTotalPrice(int index) {
+        return activeOrders.get(index).getTotalPrice();
+    }
 }
