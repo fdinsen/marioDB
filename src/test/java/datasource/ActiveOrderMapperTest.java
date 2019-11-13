@@ -27,6 +27,7 @@ public class ActiveOrderMapperTest {
         int actualNumberOfOrders;
         int expectedNumberOfOrders = 1;
         
+        
         actualNumberOfOrders = aomapper.getActiveOrders();
         
         assertEquals(expectedNumberOfOrders, actualNumberOfOrders);

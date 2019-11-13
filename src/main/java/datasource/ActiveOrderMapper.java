@@ -10,13 +10,14 @@ import java.util.logging.Logger;
 import model.Order;
 import model.Customer;
 import model.Pizza;
+import model.PizzaSize;
 import model.Topping;
 
 public class ActiveOrderMapper {
 
     private Connection con = null;
 
-    public int getActiveOrders(ArrayList<Pizza> pizzas, ArrayList<Topping> toppings) {
+    public ArrayList<Order> getActiveOrders(ArrayList<Pizza> pizzas, ArrayList<Topping> toppings) {
         Statement stmt;
         ArrayList<Order> orders = new ArrayList<>();
         Order order;
@@ -42,7 +43,16 @@ public class ActiveOrderMapper {
                     int pizzaSize;
                     pizzaId = rsPizza.getInt("pizza_id");
                     pizzaSize = rsPizza.getInt("pizza_size");
-                    orders.get(count).addPizza(pizzas.get(pizzaId), pizzaSize);
+                    PizzaSize psize;
+                    switch (pizzaSize) {
+                        case 1: 
+                            psize = PizzaSize.FAMILY;
+                        case 2:
+                            psize = PizzaSize.DEPPAN;
+                        default:
+                            psize = PizzaSize.NORMAL;
+                    }
+                    orders.get(count).addPizza(pizzas.get(pizzaId), psize);
                     int orderlineId = rsPizza.getInt("orderline_id");
                     //TODO use subquery to get all the toppings for this pizza
                     ResultSet rsTopping = stmt.executeQuery("SELECT * FROM orderlines_toppings WHERE orderline_id = " + orderlineId);
@@ -59,11 +69,11 @@ public class ActiveOrderMapper {
         } catch (SQLException ex) {
             Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return numberOfOrders;
+        return orders;
     }
 
     public void insertOrder(Order ord) {
-
+        
     }
 
     public void removeOrder(int orderId) {

@@ -16,7 +16,7 @@ public interface DataSource {
     public void insertTopping();
     public void removeTopping();
     
-    public ArrayList<Order> getAllActiveOrders();
+    public ArrayList<Order> getAllActiveOrders(ArrayList<Pizza> pizzas, ArrayList<Topping> toppings);
     public void insertOrder(Order rod);
     public void removeOrder(int orderId);
     
