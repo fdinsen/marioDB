@@ -92,9 +92,11 @@ public class Pizza {
         String returnString = null;
         
         for(Topping top : toppings){
-            returnString += top.getToppingName();
+            returnString += top.getToppingName()+" ";
         }
-        
+        for(Topping top : extraToppings){
+            returnString += top.getToppingName() + " ";
+        }
         
         return returnString;
     }

@@ -15,11 +15,6 @@ import model.Pizza;
 public class SavedOrdersMapper {
     Connection con = null;
     
-    public static void main(String[] args) {
-        SavedOrdersMapper sOM = new SavedOrdersMapper();
-        //sOM.getSavedOrders();
-    }
-    
     public void insertOrder(Order ord){
         
         try{
@@ -41,9 +36,14 @@ public class SavedOrdersMapper {
             int id = ids.getInt(1);
             
             for(Pizza piz : ord.getAllPizzasOnOrder()){
+                ps.setInt(1, id);
+                ps.setString(2,piz.getPizzaName());
+                ps.setString(3,piz.getAllToppings());
+                ps.setDouble(4, piz.getTotalPizzaPrice());
                 
+                ps.execute();
             }
-            
+            ps.close();
             
         }catch (SQLException ex){
             System.out.println(ex + "connection failed");
