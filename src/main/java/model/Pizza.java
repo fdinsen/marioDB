@@ -35,6 +35,11 @@ public class Pizza {
     public void addTopping(Topping top){
         toppings.add(top);
     }
+
+    public void setPizzaSize(PizzaSize size) {
+        this.size = size;
+    }
+
     //---------//
     // GETTERS //
     //---------//
@@ -58,6 +63,8 @@ public class Pizza {
     public ArrayList<Integer> getDefaultToppingsID(){
         return defaultToppingsID;
     }
+
+    public ArrayList<Topping> getAllToppingsOnPizza(){return toppings;}
     
     //---------//
     //ToString //
@@ -66,4 +73,6 @@ public class Pizza {
     public String toString(){
         return "";
     }
+
+
 }

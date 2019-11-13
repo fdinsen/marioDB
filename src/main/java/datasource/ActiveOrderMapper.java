@@ -54,7 +54,6 @@ public class ActiveOrderMapper {
                         orders.get(count).addExtraTopping(toppings.get(toppingId), orderlineId);
                     }
                 }
-
             }
 
         } catch (SQLException ex) {

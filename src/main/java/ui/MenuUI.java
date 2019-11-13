@@ -1,46 +1,51 @@
 package ui;
 
 
+import model.Menu;
+import model.Topping;
+
 public class MenuUI {
-    //--------------//
-    // CONSTRUCTERS //
-    //--------------//
-    private MenuUI(){
-    }
-    
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
     private InputValidation inputVal = InputValidation.getInstance();
-    MenuUI menuUI = MenuUI.getInstance();
-    
-    
-    //------------//
-    // SINGLETON  //
-    //------------//
-    public static MenuUI getInstance() 
-    { 
-        return MenuUIHolder.INSTANCE;
-    } 
-    
-    private static class MenuUIHolder {
-        private static final MenuUI INSTANCE = new MenuUI();
+    private Menu menu;
+
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
+    MenuUI(Menu menu) {
+        this.menu = menu;
     }
-    
+
     //----------------//
     // METHODS - SHOW //
     //----------------//
     void showPizzaMenuDialog() {
         boolean exit = false;
-        String pizzaer = "";
+        StringBuilder pizzaer = new StringBuilder();
         int selection;
 
         do {
             System.out.println("Mario's Pizzaria - Pizza Menu");
             System.out.println("-------------------------");
-            for (int i = 0; i < menu.getListOfPizzaName().size(); i++) {
-                pizzaer += i + 1 + ". " + menu.getPizzaName(i) + "\t " + menu.getPizzaPrice(i) + " Kr.\n\t"
-                        + menu.getPizzaDescription(i) + "\n";
+
+            //Prints all pizzas with name and price
+            for (int i = 1; i <= menu.getAmountOfPizzas(); i++) {
+                pizzaer.append(i).append(". ").append(this.menu.getPizza(i).getName()).append("\t ").append(menu.getPizza(i).getTotalPizzaPrice()).append(" Kr.\n");
+                pizzaer.append("\tToppings:\t");
+                int j = 1;
+                //Prints all toppings
+                for (Topping topping : menu.getPizza(i).getAllToppingsOnPizza()) {
+                    pizzaer.append(topping.getToppingName());
+                    //Adds comma if not the last
+                    if (j < menu.getPizza(i).getAllToppingsOnPizza().size()) {
+                        pizzaer.append(", ");
+                    }
+                    j++;
+                }
+
+                pizzaer.append("\n");
             }
             System.out.println(pizzaer);
             System.out.println("-------------------------");

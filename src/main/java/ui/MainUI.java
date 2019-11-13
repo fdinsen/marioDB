@@ -1,20 +1,34 @@
 package ui;
 
 import model.Controller;
+import model.Menu;
+import model.OrderList;
+
 /**
  *
  * @author <Frederik Keis Dinsen>
  */
 public class MainUI implements UI {
     private Controller controller;
-    public void startUI(Controller controller) {
-        mainMenuDialog();
+    private Menu menu;
+    private OrderList orderlist;
+    private NewOrderUI newOrderUI;
+    
+    public void startUI(Controller controller,Menu menu, OrderList orderlist) {
         this.controller = controller;
+        this.menu = menu;
+        this.orderlist = orderlist;
+        this.newOrderUI = new NewOrderUI(menu,orderlist);
+        mainMenuDialog();
     }
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
+    private InputValidation inputVal = InputValidation.getInstance();
+
     //---------//
     // METHODS //
     //---------//
-
     public void mainMenuDialog() {
         boolean exit = false;
 
@@ -34,7 +48,8 @@ public class MainUI implements UI {
                 switch (selection) {
                     case 1:
                         //Vis menuen
-                        menuUI.showPizzaMenuDialog(system);
+                        MenuUI menuUI = new MenuUI(menu);
+                        menuUI.showPizzaMenuDialog();
 
                         break;
                     case 2:
@@ -43,7 +58,7 @@ public class MainUI implements UI {
                         break;
                     case 3:
                         //Lav ny ordre
-                        //newOrderUI_Instance.makeNewOrderDialog();
+                        newOrderUI.makeNewOrderDialog();
                         break;
                     case 4:
                         //Viser staistik

@@ -49,11 +49,21 @@ public class FileHandler implements DataSource{
     }
 
     @Override
+    public void insertOrder(Order rod) {
+
+    }
+
+    @Override
+    public void removeOrder(int orderId) {
+
+    }
+
+
     public void insertOrder() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public void removeOrder() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -64,6 +74,11 @@ public class FileHandler implements DataSource{
     }
 
     @Override
+    public void insertSavdOrder(Order ord) {
+
+    }
+
+
     public void insertSavdOrder() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
