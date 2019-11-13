@@ -88,6 +88,14 @@ public class Pizza {
     public ArrayList<Topping> getToppingsAdded() {
         return extraToppings;
     }
-
-
+    public String getAllToppings(){
+        String returnString = null;
+        
+        for(Topping top : toppings){
+            returnString += top.getToppingName();
+        }
+        
+        
+        return returnString;
+    }
 }

@@ -1,6 +1,7 @@
 package datasource;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,38 +10,46 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Customer;
 import model.Order;
+import model.Pizza;
 
 public class SavedOrdersMapper {
     Connection con = null;
     
     public static void main(String[] args) {
         SavedOrdersMapper sOM = new SavedOrdersMapper();
-        sOM.getSavedOrders();
+        //sOM.getSavedOrders();
     }
     
-    public ArrayList<Order> getSavedOrders(){
-        Statement stmt;
-        ArrayList<Order> orders = new ArrayList<>();
-
-        try {
-            con = DBConnector.getConnection();
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM saved_orders");
-            
-            while (rs.next()) {
-                int id = rs.getInt("order_id");
-                Double price = rs.getDouble("total_price");
-                String ord_time = rs.getString("order_time");
-                int cus_id = rs.getInt("customer_id");
-                //order = new Order(id, name, price);
-                orders.add(new Order(new Customer(cus_id)));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
     public void insertOrder(Order ord){
-    
+        
+        try{
+            
+            String SQL = "INSERT into saved_orders (total_price, pickup_time, customer_phone) VALUES (?, ? , ?)";
+            con = DBConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, ord.getTotalPrice());
+            ps.setString(2, ord.getPickupTime().toString());
+            ps.setInt(3,ord.getCustomer().getPhoneNo());
+            
+            ps.execute();
+            
+            ResultSet ids = ps.getGeneratedKeys();
+            
+            SQL = "INSERT into saved_orders_pizzas (saved_order_id, pizza_name, pizza_topping, pizza_price) VALUES (?,?,?,?)";
+            
+            ids.next();
+            int id = ids.getInt(1);
+            
+            for(Pizza piz : ord.getAllPizzasOnOrder()){
+                
+            }
+            
+            
+        }catch (SQLException ex){
+            System.out.println(ex + "connection failed");
+        }
+        
+        
+        
     }
 }
