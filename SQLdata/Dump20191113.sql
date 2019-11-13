@@ -15,10 +15,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
+-- order_id
 -- Table structure for table `active_orders`
 --
-
+LOCK TABLES `active_orders` WRITE;
 DROP TABLE IF EXISTS `active_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -30,7 +30,7 @@ CREATE TABLE `active_orders` (
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+UNLOCK TABLES;
 --
 -- Dumping data for table `active_orders`
 --
@@ -103,6 +103,7 @@ CREATE TABLE `orderlines_toppings` (
   `orderline_topping_id` int(11) NOT NULL AUTO_INCREMENT,
   `topping_id` int(11) DEFAULT NULL,
   `orderline_id` int(11) NOT NULL,
+  `order_id` int(11) not NULL,
   PRIMARY KEY (`orderline_topping_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -113,7 +114,7 @@ CREATE TABLE `orderlines_toppings` (
 
 LOCK TABLES `orderlines_toppings` WRITE;
 /*!40000 ALTER TABLE `orderlines_toppings` DISABLE KEYS */;
-INSERT INTO `orderlines_toppings` VALUES (1,1,1),(2,2,1);
+INSERT INTO `orderlines_toppings` VALUES (1,1,1,1),(2,2,1,2);
 /*!40000 ALTER TABLE `orderlines_toppings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,11 +176,11 @@ DROP TABLE IF EXISTS `saved_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `saved_orders` (
-  `order_id` int(11) NOT NULL,
+  `saved_order_id` int(11) NOT NULL AUTO_INCREMENT,
   `total_price` double DEFAULT NULL,
-  `order_time` varchar(45) DEFAULT NULL,
+  `pickup_time` datetime DEFAULT NULL,
   `customer_phone` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`order_id`),
+  PRIMARY KEY (`saved_order_id`),
   KEY `customer_phone_idx` (`customer_phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -190,6 +191,7 @@ CREATE TABLE `saved_orders` (
 
 LOCK TABLES `saved_orders` WRITE;
 /*!40000 ALTER TABLE `saved_orders` DISABLE KEYS */;
+INSERT INTO `saved_orders` (customer_phone) VALUES (11111111),(22222222),(33333333),(44444444),(55555555);
 /*!40000 ALTER TABLE `saved_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,8 +206,7 @@ CREATE TABLE `saved_orders_pizzas` (
   `saved_order_id` int(11) NOT NULL,
   `pizza_name` varchar(45) NOT NULL,
   `pizza_topping` varchar(500) NOT NULL,
-  `pizza_price` int(11) NOT NULL,
-  PRIMARY KEY (`saved_order_id`)
+  `pizza_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -215,6 +216,7 @@ CREATE TABLE `saved_orders_pizzas` (
 
 LOCK TABLES `saved_orders_pizzas` WRITE;
 /*!40000 ALTER TABLE `saved_orders_pizzas` DISABLE KEYS */;
+INSERT INTO `saved_orders_pizzas` VALUES (1,"America","Tomat,ost,skinke",50),(1,"Danmark","Tomat,polse,skinke,log",70),(2,"Finlan","Tomat,ost,skinke",50),(2,"Tyskland","Tomat,polse,skinke,log",70),(3,"Holland","Tomat,ost,skinke",50),(3,"Sverige","Tomat,polse,skinke,log",70),(4,"Norge","Tomat,ost,skinke",50),(4,"Tyskland","Tomat,polse,skinke,log",70),(5,"Thailand","Tomat,ost,skinke",50),(5,"Australien","Tomat,polse,skinke,log",70);
 /*!40000 ALTER TABLE `saved_orders_pizzas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +243,7 @@ CREATE TABLE `toppings` (
 
 LOCK TABLES `toppings` WRITE;
 /*!40000 ALTER TABLE `toppings` DISABLE KEYS */;
-INSERT INTO `toppings` VALUES (1,'Ananas',8),(2,'Anchovies',8),(3,'Artiscoc',9),(4,'Asparges',7),(5,'Assorted vegetables',9),(6,'Bacon',14),(7,'Basil',3),(8,'Bearnaise',10),(9,'Bell pepper',7),(10,'Boiled potatoes',13),(11,'Bresaola',16),(12,'Buffalo mozzarella',14),(13,'Champignon',10),(14,'Cherry tomatoes',7),(15,'Chicken',12),(16,'Chilli pepper',9),(17,'Egg',6),(18,'Eggplant',7),(19,'French fries',11),(20,'Garlic',7),(21,'Genoese Pesto',6),(22,'Gorgonzola',15),(23,'Ham',15),(25,'Minzed meat',15),(26,'Mozzarella',15),(27,'Mushrooms',8),(28,'mussels',10),(29,'Olive oil',4),(30,'Olives',7),(31,'Onion',6),(32,'Onions',6),(33,'Oregano',3),(34,'Paprika',7),(35,'parma ham',15),(36,'Parmesan',6),(37,'Peas',6),(38,'Pecorino',12),(39,'Pepperoni',15),(40,'Pine nuts',7),(41,'Porchetta',16),(42,'Rocket saled',5),(43,'Rosemary',8),(44,'Salami',10),(45,'Salate',12),(46,'Sausage',11),(47,'Seafood',12),(48,'Shrimp',10),(49,'Spicy salami',10),(50,'Stracchino',9),(51,'Suace',8),(52,'Susages',15),(53,'Tomato Sauce',5),(54,'Tuna fish',10);
+INSERT INTO `toppings` VALUES (1,'Ananas',8),(2,'Anchovies',8),(3,'Artiscoc',9),(4,'Asparges',7),(5,'Assorted vegetables',9),(6,'Bacon',14),(7,'Basil',3),(8,'Bearnaise',10),(9,'Bell pepper',7),(10,'Boiled potatoes',13),(11,'Bresaola',16),(12,'Buffalo mozzarella',14),(13,'Champignon',10),(14,'Cherry tomatoes',7),(15,'Chicken',12),(16,'Chilli pepper',9),(17,'Egg',6),(18,'Eggplant',7),(19,'French fries',11),(20,'Garlic',7),(21,'Genoese Pesto',6),(22,'Gorgonzola',15),(23,'Ham',15),(25,'Minzed meat',15),(26,'Mozzarella',15),(27,'Mushrooms',8),(28,'mussels',10),(29,'Olive oil',4),(30,'Olives',7),(31,'Onion',6),(32,'Onions',6),(33,'Oregano',3),(34,'Paprika',7),(35,'parma ham',15),(36,'Parmesan',6),(37,'Peas',6),(38,'Pecorino',12),(39,'Pepperoni',15),(40,'Pine nuts',7),(41,'Porchetta',16),(42,'Rocket saled',5),(43,'Rosemary',8),(44,'Salami',10),(45,'Salate',12),(46,'Sausage',11),(47,'Seafood',12),(48,'Shrimp',10),(49,'Spicy salami',10),(50,'Stracchino',9),(51,'Suace',8),(52,'Susages',15),(53,'Tomato Sauce',5),(24,'Tuna fish',10);
 /*!40000 ALTER TABLE `toppings` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
