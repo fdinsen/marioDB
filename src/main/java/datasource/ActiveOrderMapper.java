@@ -79,17 +79,17 @@ public class ActiveOrderMapper {
             con = DBConnector.getConnection();
             String SQL = "INSERT INTO active_orders (total_price, pickup_time, customer_phone) "
                     + "VALUES (?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(SQL);
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             stmt = con.createStatement();
             ps.setDouble(1, ord.getTotalPrice());
             ps.setString(2, ord.getPickupTime().toString());
             ps.setInt(3, ord.getCustomerPhone());
             ps.execute();
-            ps.close();
             
-//            for (Pizza pizza : ord.getPizzasOnOrder() ) {
-//                stmt.executeQuery("INSERT INTO orderlines_pizzas (order_id)")
-//            }
+            for (Pizza pizza : ord.getPizzasOnOrder() ) {
+                String SQL = "INSERT INTO orderlines_pizzas (";
+                PreparedStatement ps = con.prepareStatement(SQL);
+            }
             
             
         } catch (SQLException ex) {
