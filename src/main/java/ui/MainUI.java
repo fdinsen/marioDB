@@ -40,7 +40,7 @@ public class MainUI implements UI {
             System.out.println("1 - Vis Menu");
             System.out.println("2 - Aktive Ordre");
             System.out.println("3 - Ny ordre");
-            System.out.println("4 - Statistik");
+            System.out.println("4 - Færdige ordre");
             System.out.println("55 - Afslut program");
 
             selection = inputVal.getUserInput();
@@ -48,7 +48,7 @@ public class MainUI implements UI {
                 switch (selection) {
                     case 1:
                         //Vis menuen
-                        MenuUI menuUI = new MenuUI(menu);
+                        MenuUI menuUI = new MenuUI(menu,newOrderUI);
                         menuUI.showPizzaMenuDialog();
 
                         break;

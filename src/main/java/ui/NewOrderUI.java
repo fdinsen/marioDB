@@ -1,4 +1,5 @@
 package ui;
+
 import model.*;
 
 public class NewOrderUI {
@@ -9,7 +10,7 @@ public class NewOrderUI {
     private InputValidation inputVal = InputValidation.getInstance();
     private OrderList orderlist;
     private Menu menu;
-
+    private Controller controller;
 
     //--------------//
     // CONSTRUCTORS //
@@ -17,6 +18,7 @@ public class NewOrderUI {
     NewOrderUI(Menu menu, OrderList orderlist) {
         this.menu = menu;
         this.orderlist = orderlist;
+        this.controller = controller;
     }
 
     //------------------//
@@ -27,6 +29,7 @@ public class NewOrderUI {
         boolean exit = false;
         int selection;
         int orderArrayPosition;
+        Customer customer;
         do {
             System.out.println("Mario's Pizzaria - Ny Ordre");
             System.out.println("-------------------------");
@@ -42,7 +45,12 @@ public class NewOrderUI {
                     case 1:
                         //Ordered bu phone
                         phoneNumber = makeNewOrderByTelehoneDialog();
-                        orderArrayPosition = orderlist.createOrder(phoneNumber);
+                        if(controller.checkIfCustomerExists()){
+                            customer = controller.getCustomer(phoneNumber);
+                        }else{
+                            customer = controller.createCustomer(phoneNumber);
+                        }
+                        orderArrayPosition = orderlist.createOrder(customer);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
@@ -50,7 +58,8 @@ public class NewOrderUI {
                     case 2:
                         //Not ordered by phone
                         phoneNumber = 00000000;
-                        orderArrayPosition = orderlist.createOrder(phoneNumber);
+                        customer = controller.getCustomer(phoneNumber);
+                        orderArrayPosition = orderlist.createOrder(customer);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
@@ -138,13 +147,13 @@ public class NewOrderUI {
                         case 1:
                             //Choose size
                             pizzaSize = chooseSizeDialog();
-                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(selection-1), pizzaSize);
+                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(selection), pizzaSize);
                             addNewSize = false;
                             break;
                         case 2:
                             //Add pizza to order
                             pizzaSize = PizzaSize.NORMAL;
-                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(selection-1), pizzaSize);
+                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(selection), pizzaSize);
                             addNewSize = false;
                             break;
                         default:
@@ -253,6 +262,7 @@ public class NewOrderUI {
         } while (!exit);
         return Size;
     }
+
     private void chooseExtrasDialog(int orderArrayPosition) {
         boolean exit = false;
         boolean extraQuantityCorrect;
@@ -260,55 +270,58 @@ public class NewOrderUI {
         int moreExtraQuantitySelection;
         int counter;
         int pizzaPos;
-
+        //Exit loop
         do {
-            counter = 1;
-            System.out.println("Tilængeligt tilbehør: ");
-            for (Topping topping : menu.getAllToppings()) {
-                System.out.println(counter + ". " + topping.getToppingName() + "\t" + topping.getToppingPrice() + " kr.");
-                counter++;
-            }
-            System.out.println("Indtast nummeret på hvilket tilbehør der skal tilføjes");
+            //Extraselection loop
+            do {
+                counter = 1;
+                System.out.println("Tilængeligt tilbehør: ");
+                for (Topping topping : menu.getAllToppings()) {
+                    System.out.println(counter + ". " + topping.getToppingName() + "\t" + topping.getToppingPrice() + " kr.");
+                    counter++;
+                }
+                System.out.println("Indtast nummeret på hvilket tilbehør der skal tilføjes");
 
-            extraSelection = inputVal.getUserInput();
+                extraSelection = inputVal.getUserInput();
 
-            //Keeps going until user enter a number between 1 and the amount of toppings available
-        } while (!(extraSelection > 0 && extraSelection <= menu.getAmountOfToppings()));
+                //Keeps going until user enter a number between 1 and the amount of toppings available
+            } while (!(extraSelection > 0 && extraSelection <= menu.getAmountOfToppings()));
 
-        // Grab the pizza position in the order array
-        // The pizza has just been added, so we know it's the last place
-        pizzaPos = orderlist.getOrder(orderArrayPosition).getAmountOfPizzasOnOrder() - 1;
-        orderlist.getOrder(orderArrayPosition).addExtraTopping(pizzaPos, menu.getTopping(extraSelection - 1));
-        do {
-            System.out.println("Tilføj mere tilbehør?");
-            System.out.println("1. - Ja");
-            System.out.println("2. - Nej");
-            moreExtraQuantitySelection = inputVal.getUserInput();
+            // Grab the pizza position in the order array
+            // The pizza has just been added, so we know it's the last place
+            pizzaPos = orderlist.getOrder(orderArrayPosition).getAmountOfPizzasOnOrder() - 1;
+            orderlist.getOrder(orderArrayPosition).addExtraTopping(pizzaPos, menu.getTopping(extraSelection));
+            
+            //More moreExtraQuantitySelection loop
+            do {
+                System.out.println("Tilføj mere tilbehør?");
+                System.out.println("1. - Ja");
+                System.out.println("2. - Nej");
+                moreExtraQuantitySelection = inputVal.getUserInput();
 
-            switch (moreExtraQuantitySelection) {
-                case 1:
-                    //Yes
-                    //// Jumps out of switch but not the entire loop
-                    exit = false;
-                    extraQuantityCorrect = true;
-                    break;
-                case 2:
-                    //No
-                    //// Jumps out of switch and the loop
-                    exit = true;
-                    extraQuantityCorrect = true;
-                    break;
-                default:
-                    System.err.println(moreExtraQuantitySelection + " Er ikke en mulighed prøv igen");
-                    extraQuantityCorrect = false;
+                switch (moreExtraQuantitySelection) {
+                    case 1:
+                        //Yes
+                        //// Jumps out of switch but not the entire loop
+                        exit = false;
+                        extraQuantityCorrect = true;
+                        break;
+                    case 2:
+                        //No
+                        //// Jumps out of switch and the loop
+                        exit = true;
+                        extraQuantityCorrect = true;
+                        break;
+                    default:
+                        System.err.println(moreExtraQuantitySelection + " Er ikke en mulighed prøv igen");
+                        extraQuantityCorrect = false;
 
-            }
+                }
 
-            // Continues until user input is correct
-        } while (!extraQuantityCorrect);
+                // Continues until user input is correct
+            } while (!extraQuantityCorrect);
+        } while (!exit);
 
     }
 
 }
-
-

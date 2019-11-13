@@ -16,8 +16,8 @@ public class Order {
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public Order(int phoneNumber){
-        this.customer = new Customer(phoneNumber);
+    public Order(Customer customer){
+        this.customer = customer;
         //TODO ADD ITSELF TO THE DB
     }
     
@@ -62,6 +62,10 @@ public class Order {
     public Customer getCustomer(){
         return customer;
     }
+    public int getCustomerPhone(){
+        return customer.getPhoneNumber();
+    }
+    
     public LocalDateTime getPickupTime(){
         return pickUpTime;
     }
@@ -70,6 +74,14 @@ public class Order {
     }
     public int getAmountOfPizzasOnOrder(){
         return pizzas.size();
+    }
+    
+    public String getPickupTimeHour() {
+        return "" + pickUpTime.getHour();
+    }
+
+    public String getPickupTimeMinute() {
+        return "" + pickUpTime.getMinute();
     }
     
     //---------//
@@ -81,5 +93,9 @@ public class Order {
     }
 
     public void addExtraTopping(int pizzaPos, int i, int extraQuantitySelection) {
+    }
+
+    public ArrayList<Pizza> getPizzasOnOrder() {
+        return pizzas;
     }
 }

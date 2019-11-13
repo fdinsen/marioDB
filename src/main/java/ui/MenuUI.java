@@ -10,12 +10,14 @@ public class MenuUI {
     //--------------------//
     private InputValidation inputVal = InputValidation.getInstance();
     private Menu menu;
+    private NewOrderUI newOrderUI;
 
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    MenuUI(Menu menu) {
+    MenuUI(Menu menu,NewOrderUI newOrderUI) {
         this.menu = menu;
+        this.newOrderUI = newOrderUI;
     }
 
     //----------------//
@@ -62,7 +64,7 @@ public class MenuUI {
                         break;
                     case 2:
                         //lav ny ordre
-                        //newOrderUI.makeNewOrderDialog();
+                        newOrderUI.makeNewOrderDialog();
                         break;
                     default:
                         System.err.println(selection + " Er ikke en mulighed i menuen 'PizzaMenu', prøv igen");
