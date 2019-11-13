@@ -8,7 +8,7 @@ public class Order {
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    private ArrayList<Pizza> Pizzas = new ArrayList<>();
+    private ArrayList<Pizza> pizzas = new ArrayList<>();
     private Customer customer;
     private LocalDateTime pickUpTime;
     private double totalPrice;
@@ -16,19 +16,23 @@ public class Order {
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public Order(Customer customer){
-        this.customer = customer;
+    public Order(int phoneNumber){
+        this.customer = new Customer(phoneNumber);
+        //TODO ADD ITSELF TO THE DB
     }
     
     //---------//
     // METHODS //
     //---------//
     public void addExtraTopping(int orderLineId, Topping top){
-        Pizzas.get(orderLineId).addExtraTopping(top);
+        pizzas.get(orderLineId).addExtraTopping(top);
     }
-    public void addPizza(Pizza pizz, int size){
-        
-        
+    
+    public void addPizza(Pizza pizz, PizzaSize size){
+        //TODO Copy pizza
+        Pizza pizza = pizz;
+        pizza.setPizzaSize(size);
+        pizzas.add(pizza);
     }
     public void addExtraTopping(Topping top,int orderLineID){
         
@@ -42,7 +46,13 @@ public class Order {
         
         
     }
-    
+    //---------//
+    // SETTERS //
+    //---------//
+    public void setCustomerName(String name){
+        this.customer.setCustomerName(name);
+    }
+
     //---------//
     // GETTERS //
     //---------//
@@ -58,6 +68,9 @@ public class Order {
     public double getTotalPrice(){
         return totalPrice;
     }
+    public int getAmountOfPizzasOnOrder(){
+        return pizzas.size();
+    }
     
     //---------//
     //ToString //
@@ -65,5 +78,8 @@ public class Order {
     @Override
     public String toString(){
         return "";
+    }
+
+    public void addExtraTopping(int pizzaPos, int i, int extraQuantitySelection) {
     }
 }

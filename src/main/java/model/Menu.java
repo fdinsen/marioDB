@@ -23,7 +23,11 @@ public class Menu {
         }
     }
     
-    public int getNumberOfPizzas(){
+    public int getAmountOfPizzas(){
+        return pizzaMenuCard.size();
+    }
+
+    public int getAmountOfToppings(){
         return pizzaMenuCard.size();
     }
     
@@ -33,5 +37,9 @@ public class Menu {
     
     public Topping getTopping(int i){
         return toppingMenuCard.get(i-1);
+    }
+
+    public ArrayList<Topping> getAllToppings(){
+        return toppingMenuCard;
     }
 }

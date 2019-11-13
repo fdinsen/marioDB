@@ -36,6 +36,10 @@ public class Pizza {
         toppings.add(top);
     }
 
+    public void setPizzaSize(PizzaSize size) {
+        this.size = size;
+    }
+
     //---------//
     // GETTERS //
     //---------//
@@ -69,5 +73,6 @@ public class Pizza {
     public String toString(){
         return "";
     }
+
 
 }

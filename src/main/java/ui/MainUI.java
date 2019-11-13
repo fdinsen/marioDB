@@ -12,11 +12,13 @@ public class MainUI implements UI {
     private Controller controller;
     private Menu menu;
     private OrderList orderlist;
+    private NewOrderUI newOrderUI;
     
     public void startUI(Controller controller,Menu menu, OrderList orderlist) {
         this.controller = controller;
         this.menu = menu;
         this.orderlist = orderlist;
+        this.newOrderUI = new NewOrderUI(menu,orderlist);
         mainMenuDialog();
     }
     //--------------------//
@@ -56,7 +58,7 @@ public class MainUI implements UI {
                         break;
                     case 3:
                         //Lav ny ordre
-                        //newOrderUI_Instance.makeNewOrderDialog();
+                        newOrderUI.makeNewOrderDialog();
                         break;
                     case 4:
                         //Viser staistik

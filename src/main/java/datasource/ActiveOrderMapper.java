@@ -31,7 +31,7 @@ public class ActiveOrderMapper {
                 orderId = rsOrders.getInt("order_id");
                 totalPrice = rsOrders.getDouble("total_price");
                 customerPhone = rsOrders.getInt("customer_phone");
-                orders.add(new Order(new Customer(customerPhone)));
+                orders.add(new Order(customerPhone));
             }
             
             
