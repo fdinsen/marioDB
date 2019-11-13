@@ -27,7 +27,7 @@ public class ActiveOrderMapper {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
             ResultSet rsOrders = stmt.executeQuery("SELECT * FROM active_orders");
-            int count = 0;
+            int orderCounter = 0;
             while (rsOrders.next()) {
                 int orderId;
                 double totalPrice;
@@ -37,36 +37,47 @@ public class ActiveOrderMapper {
                 customerPhone = rsOrders.getInt("customer_phone");
                 orders.add(new Order(new CustomerMapper().getCustomer(customerPhone)));
 
-                ResultSet rsPizza = stmt.executeQuery("SELECT * FROM orderlines_pizzas WHERE order_id = " + count + 1);
-
+                Statement stmt2 = con.createStatement();
+                ResultSet rsPizza = stmt2.executeQuery("SELECT * FROM orderlines_pizzas WHERE order_id = " + orderId);
+                int pizzaCounter = 0;
                 while (rsPizza.next()) {
                     int pizzaId;
                     int pizzaSize;
                     pizzaId = rsPizza.getInt("pizza_id");
-                    pizzaSize = rsPizza.getInt("pizza_size");
-                    PizzaSize psize;
-                    switch (pizzaSize) {
-                        case 1:
-                            psize = PizzaSize.FAMILY;
-                        case 2:
-                            psize = PizzaSize.DEPPAN;
-                        default:
-                            psize = PizzaSize.NORMAL;
-                    }
-                    orders.get(count).addPizza(pizzas.get(pizzaId), psize);
+                    PizzaSize psize = PizzaSize.NORMAL;
+//                    pizzaSize = rsPizza.getInt("pizza_size");
+//                    PizzaSize psize;
+//                    switch (pizzaSize) {
+//                        case 1:
+//                            psize = PizzaSize.FAMILY;
+//                        case 2:
+//                            psize = PizzaSize.DEPPAN;
+//                        default:
+//                            psize = PizzaSize.NORMAL;
+//                    }
+                    orders.get(orderCounter).addPizza(pizzas.get(pizzaId), psize);
                     int orderlineId = rsPizza.getInt("orderline_id");
                     //TODO use subquery to get all the toppings for this pizza
-                    ResultSet rsTopping = stmt.executeQuery("SELECT * FROM orderlines_toppings WHERE orderline_id = " + orderlineId);
 
+                    Statement stmt3 = con.createStatement();
+                    ResultSet rsTopping = stmt3.executeQuery("SELECT * FROM orderlines_toppings WHERE orderline_id = " + orderlineId);
                     while (rsTopping.next()) {
                         int toppingId;
 
                         toppingId = rsTopping.getInt("topping_id");
-                        orders.get(count).addExtraTopping(toppings.get(toppingId), orderlineId);
+                        orders.get(orderCounter).addExtraTopping(pizzaCounter, toppings.get(toppingId));
                     }
+                    pizzaCounter++;
+                    rsTopping.close();
+                    stmt3.close();
                 }
+                rsPizza.close();
+                stmt2.close();
+                orderCounter++;
             }
-
+            rsOrders.close();
+            stmt.close();
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
