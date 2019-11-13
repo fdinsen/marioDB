@@ -1,5 +1,6 @@
 package model;
 import datasource.DataSource;
+import java.util.ArrayList;
 import ui.UI;
 
 public class Controller {
@@ -13,7 +14,7 @@ public class Controller {
         this.datasource = datasource;
         this.ui = ui;
         menu = new Menu(datasource);
-        orderlist = new OrderList(datasource,menu);
+        orderlist = new OrderList(this, menu);
         startProgram();
     }
     
@@ -36,5 +37,18 @@ public class Controller {
     
     public void createActiveOrder(Order order){
         datasource.insertOrder(order);
+    }
+
+    ArrayList<Order> getAllActiveOrders(ArrayList<Pizza> allPizzas, ArrayList<Topping> allToppings) {
+        return datasource.getAllActiveOrders(allPizzas, allToppings);
+    }
+
+    void removePizza(int orderNumber, int pizzaNumber) {
+        //TODO add function
+        //datasource.removePizza(orderNumber,pizzaNumber);
+    }
+
+    void removeOrder(int orderNo) {
+        datasource.removeOrder(orderNo);
     }
 }

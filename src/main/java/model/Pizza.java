@@ -30,6 +30,8 @@ public class Pizza {
     //---------//
     public void addExtraTopping(Topping top){
         extraToppings.add(top);
+        totalPizzaPrice += top.getToppingPrice();
+        
     }
     
     public void addTopping(Topping top){

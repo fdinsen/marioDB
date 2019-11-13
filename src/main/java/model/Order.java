@@ -31,6 +31,7 @@ public class Order {
         Pizza pizza = pizz;
         pizza.setPizzaSize(size);
         pizzas.add(pizza);
+        totalPrice += pizza.getTotalPizzaPrice();
     }
     public void addExtraTopping(int orderLineID,Topping top){
         orderLineID = orderLineID;
@@ -38,6 +39,13 @@ public class Order {
         pizzas.get(orderLineID).addExtraTopping(top);
 
         calculateTotalPrice();
+        
+    }
+    
+    public void addDefaultTopping(int orderLineID,Topping top){
+        orderLineID = orderLineID;
+
+        pizzas.get(orderLineID).addTopping(top);
         
     }
     private void calculateTotalPrice(){

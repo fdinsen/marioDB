@@ -3,15 +3,16 @@ package model;
 import java.util.ArrayList;
 import datasource.DataSource;
 import model.Customer;
+import model.Controller;
 
 public class OrderList {
     
     private ArrayList<Order> activeOrders;
-    private final DataSource datasource;
+    private final Controller controller;
     
-    public OrderList(DataSource datasource,Menu menu){
-        this.datasource = datasource;
-        activeOrders = datasource.getAllActiveOrders(menu.getAllPizzas(),menu.getAllToppings());
+    public OrderList(Controller controller,Menu menu){
+        this.controller = controller;
+        activeOrders = controller.getAllActiveOrders(menu.getAllPizzas(),menu.getAllToppings());
     }
     public void completeOrder(int index){
         
@@ -23,7 +24,7 @@ public class OrderList {
         return activeOrders.size()-1;
     }
     public void deleteOrder(int orderNo){
-        
+        controller.removeOrder(orderNo-1);
         
     }
     public void finishOrder(int orderListIndex){
@@ -55,7 +56,7 @@ public class OrderList {
 
 
     public void deletePizzaFromOrder(int orderNumber, int pizzaNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.removePizza(orderNumber, pizzaNumber);
     }
 
     public String getCustomerName(int index) {

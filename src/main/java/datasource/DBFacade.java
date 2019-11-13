@@ -45,10 +45,6 @@ public class DBFacade implements DataSource{
         return new ActiveOrderMapper().getActiveOrders(pizzas, toppings);
     }
 
-    // @Override
-    //public ArrayList<Order> getAllActiveOrders() {
-     //   return new ActiveOrderMapper().getActiveOrders();
-  //  }
 
     @Override
     public void insertOrder(Order ord) {

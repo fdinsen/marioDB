@@ -43,7 +43,7 @@ public class NewOrderUI {
             if (selection != -1) {
                 switch (selection) {
                     case 1:
-                        //Ordered bu phone
+                        //Ordered by phone
                         phoneNumber = makeNewOrderByTelehoneDialog();
                         if(controller.checkIfCustomerExists()){
                             customer = controller.getCustomer(phoneNumber);

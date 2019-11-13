@@ -1,5 +1,6 @@
 package datasource;
 
+import com.sun.corba.se.impl.oa.NullServantImpl;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ public class DBConnector {
     }
 
     public static Connection getConnection() {
+        con = null;
         if (con == null) {
             try {
                 Class.forName(DRIVER);
