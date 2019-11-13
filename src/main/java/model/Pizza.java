@@ -100,4 +100,8 @@ public class Pizza {
         
         return returnString;
     }
+
+    public ArrayList<Topping> getAllExtraToppingsOnPizza() {
+        return extraToppings;
+    }
 }

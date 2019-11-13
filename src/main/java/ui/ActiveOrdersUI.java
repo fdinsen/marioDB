@@ -216,11 +216,9 @@ public class ActiveOrdersUI {
 
             //Adds price
             stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
-
-            //Checks if any toppings are added
-            if (!pizza.getAllToppingsOnPizza().isEmpty()) {
-                //Adds the toppings
-                stringOrder.append("\nEkstra Toppings: ");
+            
+            //Prints Default Toppings
+            stringOrder.append("\nDefault Toppings: ");
                 for (Topping extraTopping : pizza.getAllToppingsOnPizza()) {
                     //For each topping name
                     stringOrder.append(" ").append(extraTopping.getToppingName());
@@ -230,8 +228,23 @@ public class ActiveOrdersUI {
                         stringOrder.append(", ");
                     }
                 }
+            
+            //Checks if any extra toppings are added
+            if (!pizza.getAllExtraToppingsOnPizza().isEmpty()) {
+                //Adds the toppings
+                stringOrder.append("\n\t\tExtra Toppings: ");
+                for (Topping extraTopping : pizza.getAllExtraToppingsOnPizza()) {
+                    //For each topping name
+                    stringOrder.append(" ").append(extraTopping.getToppingName());
+
+                    //If there is more than 1 topping add ,
+                    if (pizza.getAllExtraToppingsOnPizza().size() > 1) {
+                        stringOrder.append(", ");
+                    }
+                }
 
             }
+            
             //Adds unless its the lastline
             if (orderlist.getOrder(index).getAmountOfPizzasOnOrder() >= counter) {
                 stringOrder.append("\n-----\n");
@@ -338,8 +351,8 @@ public class ActiveOrdersUI {
 
             //Adds the price
             stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
-
-            //Check if toppings exit
+            
+            
             if (!pizza.getAllToppingsOnPizza().isEmpty()) {
                 //Adds the extra toppings
                 stringOrder.append("\nToppings: ");
@@ -354,6 +367,23 @@ public class ActiveOrdersUI {
                 }
 
             }
+            
+            //Checks if any extra toppings are added
+            if (!pizza.getAllExtraToppingsOnPizza().isEmpty()) {
+                //Adds the toppings
+                stringOrder.append("\n\t\tExtra Toppings: ");
+                for (Topping extraTopping : pizza.getAllExtraToppingsOnPizza()) {
+                    //For each topping name
+                    stringOrder.append(" ").append(extraTopping.getToppingName());
+
+                    //If there is more than 1 topping add ,
+                    if (pizza.getAllExtraToppingsOnPizza().size() > 1) {
+                        stringOrder.append(", ");
+                    }
+                }
+
+            }
+            
             stringOrder.append("\n-----\n");
         }
         stringOrder.append("Afhentnings tidspunkt: ").append(orderlist.getPickUpTimeHour(index)).append(":").append(orderlist.getPickUpTimeMinute(index)).append(" ").append("\nTotal Pris: ").append(orderlist.getTotalPrice(index));
