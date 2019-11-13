@@ -100,6 +100,6 @@ public class Order {
     }
 
     public String getCustomerName() {
-       return  customer.getCustomerName;
+       return  customer.getCustomerName();
     }
 }
