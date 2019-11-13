@@ -12,6 +12,8 @@ public class Order {
     private Customer customer;
     private LocalDateTime pickUpTime;
     private double totalPrice;
+    //TODO get the OrderID from database
+    private int orderID;
     
     //--------------//
     // CONSTRUCTERS //
@@ -19,7 +21,6 @@ public class Order {
     public Order(Customer customer){
         this.customer = customer;
         pickUpTime = LocalDateTime.now().plusMinutes(15);
-        //TODO ADD ITSELF TO THE DB
     }
     
     //---------//

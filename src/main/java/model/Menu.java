@@ -18,7 +18,6 @@ public class Menu {
     private void setDefaultToppings(){
         for (Pizza pizza : pizzaMenuCard) {
             for(int i : pizza.getDefaultToppingsID()){
-                System.out.println(toppingMenuCard.get(i-1).getToppingName());
                 pizza.addTopping(toppingMenuCard.get(i-1));
             }
         }

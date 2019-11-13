@@ -36,7 +36,6 @@ public class ActiveOrderMapper {
                 totalPrice = rsOrders.getDouble("total_price");
                 customerPhone = rsOrders.getInt("customer_phone");
                 orders.add(new Order(new CustomerMapper().getCustomer(customerPhone)));
-
                 Statement stmt2 = con.createStatement();
                 ResultSet rsPizza = stmt2.executeQuery("SELECT * FROM orderlines_pizzas WHERE order_id = " + orderId);
                 int pizzaCounter = 0;
@@ -65,7 +64,7 @@ public class ActiveOrderMapper {
                         int toppingId;
 
                         toppingId = rsTopping.getInt("topping_id");
-                        orders.get(orderCounter).addExtraTopping(pizzaCounter, toppings.get(toppingId));
+                        orders.get(orderCounter).addExtraTopping(pizzaCounter, toppings.get(toppingId-1));
                     }
                     pizzaCounter++;
                     rsTopping.close();
@@ -132,7 +131,8 @@ public class ActiveOrderMapper {
 
     public void removeOrder(int orderId) {
         con = DBConnector.getConnection();
-        String SQL = "DELETE FROM active_orders, orderlines_pizzas, orderlines_toppings WHERE order_id = ?";
+        //TODO Find sql statement that deletes all rows on order_id, right now there needs to be an order_id that matches in every table..
+        String SQL = "DELETE FROM a,b,c USING active_orders a JOIN orderlines_pizzas b JOIN orderlines_toppings c WHERE a.order_id = ?";
         try (PreparedStatement ps = con.prepareStatement(SQL)) {
             ps.setInt(1, orderId);
             ps.execute();

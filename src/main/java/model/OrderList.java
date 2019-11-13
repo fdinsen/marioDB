@@ -21,7 +21,7 @@ public class OrderList {
     //TODO Creates order returnes orderlistIndex
     public int createOrder(Customer customer){
         activeOrders.add((new Order(customer)));
-        return activeOrders.size()-1;
+        return activeOrders.size();
     }
     public void deleteOrder(int orderNo){
         controller.removeOrder(orderNo-1);
@@ -33,7 +33,7 @@ public class OrderList {
     }
 
     public Order getOrder(int orderListIndex){
-        return activeOrders.get(orderListIndex);
+        return activeOrders.get(orderListIndex-1);
 
     }
     
@@ -89,6 +89,6 @@ public class OrderList {
     }
 
     public void addExtraTopping(int orderArrayPosition, int pizzaPos, Topping topping) {
-        activeOrders.get(orderArrayPosition).addExtraTopping(pizzaPos, topping);
+        activeOrders.get(orderArrayPosition-1).addExtraTopping(pizzaPos, topping);
     }
 }

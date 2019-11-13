@@ -351,9 +351,7 @@ public class ActiveOrdersUI {
 
             //Adds the price
             stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
-            
-            
-            if (!pizza.getAllToppingsOnPizza().isEmpty()) {
+
                 //Adds the extra toppings
                 stringOrder.append("\nToppings: ");
                 for (Topping Topping : pizza.getAllToppingsOnPizza()) {
@@ -365,8 +363,6 @@ public class ActiveOrdersUI {
                         stringOrder.append(", ");
                     }
                 }
-
-            }
             
             //Checks if any extra toppings are added
             if (!pizza.getAllExtraToppingsOnPizza().isEmpty()) {

@@ -61,8 +61,6 @@ public class NewOrderUI {
                         phoneNumber = 00000000;
                         customer = controller.getCustomer(phoneNumber);
                         orderArrayPosition = orderlist.createOrder(customer);
-                        
-                        addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
                         break;
@@ -149,13 +147,13 @@ public class NewOrderUI {
                         case 1:
                             //Choose size
                             pizzaSize = chooseSizeDialog();
-                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(selection), pizzaSize);
+                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(pizzaNumber), pizzaSize);
                             addNewSize = false;
                             break;
                         case 2:
                             //Add pizza to order
                             pizzaSize = PizzaSize.NORMAL;
-                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(selection), pizzaSize);
+                            orderlist.getOrder(orderArrayPosition).addPizza(menu.getPizza(pizzaNumber), pizzaSize);
                             addNewSize = false;
                             break;
                         default:
@@ -294,7 +292,7 @@ public class NewOrderUI {
 
             // Grab the pizza position in the order array
             // The pizza has just been added, so we know it's the last place
-            pizzaPos = orderlist.getOrder(orderArrayPosition).getAmountOfPizzasOnOrder() - 1;
+            pizzaPos = orderlist.getOrder(orderArrayPosition).getAmountOfPizzasOnOrder()-1;
             orderlist.addExtraTopping(orderArrayPosition,pizzaPos, menu.getTopping(extraSelection));
             
             //More moreExtraQuantitySelection loop
