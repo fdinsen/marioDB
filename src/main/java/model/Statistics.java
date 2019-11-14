@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author <Frederik Keis Dinsen>
@@ -22,7 +24,7 @@ public class Statistics {
     //---------//
     // GETTERS //
     //---------//
-    public IndividualStatistics getTotalSales() {
+    public IndividualStatistics getAmountOfOrders() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
@@ -41,4 +43,13 @@ public class Statistics {
     public IndividualStatistics getBottomSellingPizza() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public ArrayList<IndividualStatistics> getAllPizzaStatistics() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<IndividualStatistics> getCustomerOrders() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
