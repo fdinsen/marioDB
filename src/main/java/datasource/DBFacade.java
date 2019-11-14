@@ -2,6 +2,7 @@ package datasource;
 
 import java.util.ArrayList;
 import model.Customer;
+import model.IndividualStatistics;
 import model.Order;
 import model.Pizza;
 import model.Topping;
@@ -57,11 +58,6 @@ public class DBFacade implements DataSource{
     }
 
     @Override
-    public ArrayList<Order> getAllSavedOrders() {
-        return new SavedOrdersMapper().getSavedOrders();
-    }
-
-    @Override
     public void insertSavdOrder(Order ord) {
         new SavedOrdersMapper().insertOrder(ord);
     }
@@ -85,6 +81,36 @@ public class DBFacade implements DataSource{
     @Override
     public void updateCustomerName(int phoneNo, String name) {
         new CustomerMapper().updateName(phoneNo, name);
+    }
+
+    @Override
+    public IndividualStatistics getAmountOfOrders() {
+        return new StaticsticsMapper().getAmountOfOrder();
+    }
+
+    @Override
+    public IndividualStatistics getTotalTurnover() {
+        return new StaticsticsMapper().getTotalTurnover();
+    }
+
+    @Override
+    public IndividualStatistics getAverageOrderPrice() {
+        return new StaticsticsMapper().getAverageOrderPrice();
+    }
+
+    @Override
+    public IndividualStatistics getTopSellingPizza() {
+        return new StaticsticsMapper().getTopSellingPizza();
+    }
+
+    @Override
+    public IndividualStatistics getWorstSellingPizza() {
+        return new StaticsticsMapper().getWorstSellingPizza();
+    }
+
+    @Override
+    public ArrayList<IndividualStatistics> getAllPizzaSales() {
+        return new StaticsticsMapper().getAllPizzaSales();
     }
 
 }

@@ -5,6 +5,7 @@ import model.Customer;
 import model.Order;
 import model.Pizza;
 import model.Topping;
+import model.IndividualStatistics;
 
 public interface DataSource {
     
@@ -20,7 +21,6 @@ public interface DataSource {
     public void insertOrder(Order rod);
     public void removeOrder(int orderId);
     
-    public ArrayList<Order> getAllSavedOrders();
     public void insertSavdOrder(Order ord);
     
     public boolean customerExits(int phoneNo);
@@ -28,4 +28,10 @@ public interface DataSource {
     public Customer createCustomer(int phoneNo);
     public void updateCustomerName(int phoneNo, String name);
     
+    public IndividualStatistics getAmountOfOrders();
+    public IndividualStatistics getTotalTurnover();
+    public IndividualStatistics getAverageOrderPrice();
+    public IndividualStatistics getTopSellingPizza();
+    public IndividualStatistics getWorstSellingPizza();
+    public ArrayList<IndividualStatistics> getAllPizzaSales();
 }

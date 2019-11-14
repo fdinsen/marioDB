@@ -47,8 +47,4 @@ public class SavedOrdersMapper {
             System.out.println(ex + "connection failed");
         }
     }
-
-    public ArrayList<Order> getSavedOrders() {
-        return null;
-    }
 }

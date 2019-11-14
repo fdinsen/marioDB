@@ -3,6 +3,7 @@ package datasource;
 
 import java.util.ArrayList;
 import model.Customer;
+import model.IndividualStatistics;
 import model.Order;
 import model.Pizza;
 import model.Topping;
@@ -101,6 +102,31 @@ public class FileHandler implements DataSource{
 
     @Override
     public void updateCustomerName(int phoneNo, String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IndividualStatistics getAmountOfOrders() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IndividualStatistics getTotalTurnover() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IndividualStatistics getAverageOrderPrice() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IndividualStatistics getTopSellingPizza() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IndividualStatistics getWorstSellingPizza() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
