@@ -28,7 +28,7 @@ public class Menu {
     }
 
     public int getAmountOfToppings(){
-        return pizzaMenuCard.size();
+        return toppingMenuCard.size();
     }
 
     public Pizza getPizza(int i){
