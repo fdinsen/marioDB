@@ -103,10 +103,19 @@ class ActiveOrderMapper {
             }
             ps.close();
             for (Pizza pizza : ord.getAllPizzasOnOrder()) {
-                SQL = "INSERT INTO orderlines_pizzas (order_id, pizza_id) VALUES (?, ?)";
+                SQL = "INSERT INTO orderlines_pizzas (order_id, pizza_id, pizza_size) VALUES (?, ?, ?)";
                 ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, currentOrderId);
                 ps.setInt(2, pizza.getPizzaNo());
+                int pizzaSize;
+                if (pizza.getPizzaSizeString() == "DEPPAN") {
+                    pizzaSize = 2;
+                } else if (pizza.getPizzaSizeString() == "FAMILY") {
+                    pizzaSize = 1;
+                } else {
+                    pizzaSize = 0;
+                }
+                ps.setInt(3, pizzaSize);
                 ps.execute();
                 ResultSet orderlineId = ps.getGeneratedKeys();
                 int currentOrderlineId = 0;
