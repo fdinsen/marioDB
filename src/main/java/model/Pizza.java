@@ -86,19 +86,18 @@ public class Pizza {
     }
 
     public String getAllToppingsString() {
-        StringBuilder returnString = null;
+        String returnString = "";
         if (!toppings.isEmpty()) {
             for (Topping top : toppings) {
-                returnString.append(top.getToppingName());
-                returnString.append(" ");
+                returnString += top.getToppingName() + " ";
             }
         }
         if (!extraToppings.isEmpty()) {
             for (Topping top : extraToppings) {
-                returnString.append(top.getToppingName()).append(" ");
+                returnString += top.getToppingName() + " ";
             }
         }
 
-        return returnString.toString();
+        return returnString;
     }
 }
