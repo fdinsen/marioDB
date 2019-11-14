@@ -1,14 +1,9 @@
 package datasource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
 import model.Order;
 import model.Pizza;
+
+import java.sql.*;
 
 public class SavedOrdersMapper {
     Connection con = null;

@@ -56,7 +56,7 @@ public class DBFacade implements DataSource{
     }
 
     @Override
-    public void insertSavdOrder(Order ord) {
+    public void insertSavedOrder(Order ord) {
         new SavedOrdersMapper().insertOrder(ord);
     }
 

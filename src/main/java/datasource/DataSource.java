@@ -21,7 +21,7 @@ public interface DataSource {
     public void insertOrder(Order rod);
     public void removeOrder(int orderId);
     
-    public void insertSavdOrder(Order ord);
+    public void insertSavedOrder(Order ord);
     
     public boolean customerExits(int phoneNo);
     public Customer getCustomer(int phonoNo);

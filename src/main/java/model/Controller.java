@@ -53,7 +53,7 @@ public class Controller {
         datasource.removeOrder(orderNo);
     }
     public void createSavedOrder(Order ord){
-        datasource.insertSavdOrder(ord);
+        datasource.insertSavedOrder(ord);
     }
 
     IndividualStatistics getTotalTurnover() {

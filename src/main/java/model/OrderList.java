@@ -70,7 +70,6 @@ public class OrderList {
     //---------//
     public void setCustomerName(String name, int pos){
         activeOrders.get(pos-1).setCustomerName(name);
-        int phoneNumber = activeOrders.get(pos-1).getCustomerPhone();
     }
 
     //---------//
@@ -104,10 +103,7 @@ public class OrderList {
     }
 
     public boolean doesHaveCustomerPhone(int index) {
-        if(getOrder(index).getCustomerPhone() == 00000000){
-            return false;
-        }
-        return true;
+        return getOrder(index).getCustomerPhone() != 00000000;
     }
 
     public boolean doesHaveCustomerName(int index) {

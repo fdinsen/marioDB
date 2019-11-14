@@ -38,14 +38,6 @@ public class PizzaMapper  {
         }
         return pizzas;
     }
-    public void insertPizza(){
-        //TODO create if time is with us
-        
-    }
-    public void removePizza(){
-        //TODO create if time is with us
-        
-    }
 
     public ArrayList<Integer> getDefaultToppingsForPizza(int id) {
         Statement stmt;

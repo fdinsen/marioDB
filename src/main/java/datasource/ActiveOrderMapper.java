@@ -108,9 +108,9 @@ class ActiveOrderMapper {
                 ps.setInt(1, currentOrderId);
                 ps.setInt(2, pizza.getPizzaNo());
                 int pizzaSize;
-                if (pizza.getPizzaSizeString() == "DEPPAN") {
+                if (pizza.getPizzaSizeString().equals("DEPPAN")) {
                     pizzaSize = 2;
-                } else if (pizza.getPizzaSizeString() == "FAMILY") {
+                } else if (pizza.getPizzaSizeString().equals("FAMILY")) {
                     pizzaSize = 1;
                 } else {
                     pizzaSize = 0;

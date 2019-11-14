@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import model.Topping;
 
 public class ToppingMapper  {
-    Connection con = null;
+    private Connection con = null;
 
     public ToppingMapper(){
         

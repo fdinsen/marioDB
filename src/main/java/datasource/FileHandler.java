@@ -70,7 +70,7 @@ public class FileHandler implements DataSource{
     }
 
     @Override
-    public void insertSavdOrder(Order ord) {
+    public void insertSavedOrder(Order ord) {
 
     }
 

@@ -93,7 +93,8 @@ public class StatisticsUI {
                     //not empty
                     do {
                         for (IndividualStatistics indivStat : statistics.getCustomerOrders(selection)) {
-                            System.out.println(indivStat.getPizzaName() + "\n\t" + indivStat.getOrderTime() + " - " + indivStat.getPrice() + " kr.");
+                            counter++;
+                            System.out.println(counter + indivStat.getPizzaName() + "\n\t" + indivStat.getOrderTime() + " - " + indivStat.getPrice() + " kr.");
                             System.out.println("\t Toppings: " + indivStat.getToppingsString());
 
                         }

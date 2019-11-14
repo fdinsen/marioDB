@@ -116,8 +116,8 @@ public class StaticsticsMapper {
     public ArrayList<IndividualStatistics> getAllPizzaSales() {
         Statement stmt;
         ArrayList<IndividualStatistics> list = new ArrayList<>();
-        int sales = 0;
-        String name = "";
+        int sales;
+        String name;
         try {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
@@ -139,11 +139,11 @@ public class StaticsticsMapper {
     public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo) {
 
         ArrayList<IndividualStatistics> list = new ArrayList<>();
-        Statement stmt = null;
-        String pizza_name = "";
-        String pizza_topping = "";
-        int pizza_price = 0;
-        String pickup_time = "";
+        Statement stmt;
+        String pizza_name;
+        String pizza_topping;
+        int pizza_price;
+        String pickup_time;
 
         try {
             con = DBConnector.getConnection();
