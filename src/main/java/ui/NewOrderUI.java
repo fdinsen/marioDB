@@ -45,7 +45,7 @@ public class NewOrderUI {
                     case 1:
                         //Ordered by phone
                         phoneNumber = makeNewOrderByTelehoneDialog();
-                        if(controller.checkIfCustomerExists()){
+                        if(controller.checkIfCustomerExists(phoneNumber)){
                             customer = controller.getCustomer(phoneNumber);
                         }else{
                             customer = controller.createCustomer(phoneNumber);
