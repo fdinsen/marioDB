@@ -37,6 +37,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `active_orders` WRITE;
 /*!40000 ALTER TABLE `active_orders` DISABLE KEYS */;
+INSERT INTO `active_orders` VALUES (9,167,'2019-11-14 13:14:46',12345678),(10,270,'2019-11-14 13:15:42',66663333);
 -- INSERT INTO `active_orders` VALUES (1,75,'2019-11-12 10:20:51',12345678),(2,75,'2019-11-12 10:20:51',12345678),(3,0,'2019-11-13 14:23:05',12345678);
 /*!40000 ALTER TABLE `active_orders` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -62,7 +63,8 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
--- INSERT INTO `customers` VALUES ('DEFAULT USER',0),('Mikkel',10111213),('Jonathan',12131415),('John',12345678),('Caroline',23456789),('Mathias',34567890),('Louise',45678910);
+INSERT INTO `customers` VALUES ('DEFAULT USER',0),(NULL,12345678),(NULL,23456789),(NULL,55556666),(NULL,66663333),(NULL,98765432);
+-- INSERT INTO `customers` VALUES ('Mikkel',10111213),('Jonathan',12131415),('John',12345678),('Caroline',23456789),('Mathias',34567890),('Louise',45678910);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,6 +91,7 @@ CREATE TABLE `orderlines_pizzas` (
 
 LOCK TABLES `orderlines_pizzas` WRITE;
 /*!40000 ALTER TABLE `orderlines_pizzas` DISABLE KEYS */;
+INSERT INTO `orderlines_pizzas` VALUES (12,9,'2',1),(13,9,'4',0),(14,10,'16',1),(15,10,'29',0),(16,10,'11',0),(17,10,'20',0);
 -- INSERT INTO `orderlines_pizzas` VALUES (1,1,'1',1),(2,2,'5',0),(3,2,'5',0);
 /*!40000 ALTER TABLE `orderlines_pizzas` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -115,6 +118,7 @@ CREATE TABLE `orderlines_toppings` (
 
 LOCK TABLES `orderlines_toppings` WRITE;
 /*!40000 ALTER TABLE `orderlines_toppings` DISABLE KEYS */;
+INSERT INTO `orderlines_toppings` VALUES (14,15,12,9),(15,14,12,9),(16,9,13,9),(17,1,13,9),(18,13,14,10),(19,20,14,10),(20,2,15,10),(21,5,15,10),(22,6,15,10),(23,4,17,10);
 -- INSERT INTO `orderlines_toppings` VALUES (1,1,1,1),(2,2,1,2);
 /*!40000 ALTER TABLE `orderlines_toppings` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -192,6 +196,7 @@ CREATE TABLE `saved_orders` (
 
 LOCK TABLES `saved_orders` WRITE;
 /*!40000 ALTER TABLE `saved_orders` DISABLE KEYS */;
+INSERT INTO `saved_orders` VALUES (1,166,'2019-11-14 13:10:36',12345678),(2,171,'2019-11-14 13:11:13',12345678),(3,83,'2019-11-14 13:11:46',23456789),(4,166,'2019-11-14 13:12:18',98765432),(5,64,'2019-11-14 13:14:02',55556666);
 -- INSERT INTO `saved_orders` (customer_phone) VALUES (11111111),(22222222),(33333333),(44444444),(55555555);
 /*!40000 ALTER TABLE `saved_orders` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -217,6 +222,7 @@ CREATE TABLE `saved_orders_pizzas` (
 
 LOCK TABLES `saved_orders_pizzas` WRITE;
 /*!40000 ALTER TABLE `saved_orders_pizzas` DISABLE KEYS */;
+INSERT INTO `saved_orders_pizzas` VALUES (1,'Margherita','Tomato Sauce Mozzarella Oregano Artiscoc Asparges ',83),(1,'Margherita','Tomato Sauce Mozzarella Oregano Artiscoc Asparges ',83),(2,'Quattro','Tomato Sauce Mozzarella Ham Asparges Olives Oregano Asparges ',86),(2,'Carbonara','Tomato Sauce Mozzarella Parmesan Egg Bacon ',85),(3,'Margherita','Tomato Sauce Mozzarella Oregano Artiscoc Asparges ',83),(4,'Margherita','Tomato Sauce Mozzarella Oregano Artiscoc Asparges ',83),(4,'Margherita','Tomato Sauce Mozzarella Oregano Artiscoc Asparges ',83),(5,'Quattro Formaggi','Tomato Sauce Mozzarella Gorgonzola Artiscoc Oregano ',64);
 -- INSERT INTO `saved_orders_pizzas` VALUES (1,"America","Tomat,ost,skinke",50),(1,"Danmark","Tomat,polse,skinke,log",70),(2,"Finlan","Tomat,ost,skinke",50),(2,"Tyskland","Tomat,polse,skinke,log",70),(3,"Holland","Tomat,ost,skinke",50),(3,"Sverige","Tomat,polse,skinke,log",70),(4,"Norge","Tomat,ost,skinke",50),(4,"Tyskland","Tomat,polse,skinke,log",70),(5,"Thailand","Tomat,ost,skinke",50),(5,"Australien","Tomat,polse,skinke,log",70);
 /*!40000 ALTER TABLE `saved_orders_pizzas` ENABLE KEYS */;
 UNLOCK TABLES;

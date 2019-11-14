@@ -54,7 +54,7 @@ class ActiveOrderMapper {
                         default:
                             psize = PizzaSize.NORMAL;
                     }
-                    orders.get(orderCounter).addPizza(pizzas.get(pizzaId-1), psize);
+                    orders.get(orderCounter).addPizza(pizzas.get(pizzaId - 1), psize);
                     int orderlineId = rsPizza.getInt("orderline_id");
                     orders.get(orderCounter).getAllPizzasOnOrder().get(pizzaCounter).setOrderLineID(orderlineId);
                     //TODO use subquery to get all the toppings for this pizza
@@ -65,7 +65,7 @@ class ActiveOrderMapper {
                         int toppingId;
 
                         toppingId = rsTopping.getInt("topping_id");
-                        orders.get(orderCounter).addExtraTopping(pizzaCounter, toppings.get(toppingId-1));
+                        orders.get(orderCounter).addExtraTopping(pizzaCounter, toppings.get(toppingId - 1));
                     }
                     pizzaCounter++;
                     rsTopping.close();
@@ -152,29 +152,66 @@ class ActiveOrderMapper {
 //            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
 //            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
-        
+
+
+        //Delete all toppings from order, if they exist in the order
         String SQL = "SELECT count(*) FROM orderlines_toppings WHERE order_id = ?";
-        try (PreparedStatement psCount = con.prepareStatement(SQL)) {
-            psCount.setInt(1, orderId);
-            ResultSet count = psCount.executeQuery();
-            if (count.next()) {
-               SQL =  "DELETE FROM a,b,c USING active_orders a JOIN orderlines_pizzas b JOIN orderlines_toppings c WHERE a.order_id = ?";
+        try (PreparedStatement psCountToppings = con.prepareStatement(SQL)) {
+            psCountToppings.setInt(1, orderId);
+            ResultSet countToppings = psCountToppings.executeQuery();
+            if (countToppings.next()) {
+                String SQLb = "DELETE FROM orderlines_toppings WHERE order_id = ?";
+                PreparedStatement psToppings = con.prepareStatement(SQLb);
+                psToppings.setInt(1, orderId);
+                psToppings.execute();
+                psToppings.close();
             }
-            else {
-                SQL = "DELETE FROM a,b USING active_orders a JOIN orderlines_pizzas WHERE a.order_id = ?";
+        } catch (SQLException ex) {
+            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
+            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Delete all pizzas from order, if they exist in the order
+        SQL = "SELECT count(*) FROM orderlines_pizzas WHERE order_id = ?";
+        try (PreparedStatement psCountPizzas = con.prepareStatement(SQL)) {
+            psCountPizzas.setInt(1, orderId);
+            ResultSet countPizzas = psCountPizzas.executeQuery();
+            if (countPizzas.next()) {
+                String SQLb = "DELETE FROM orderlines_pizzas WHERE order_id = ?";
+                PreparedStatement psPizzas = con.prepareStatement(SQLb);
+                psPizzas.setInt(1, orderId);
+                psPizzas.execute();
+                psPizzas.close();
             }
-            try (PreparedStatement ps = con.prepareStatement(SQL)) {
+        } catch (SQLException ex) {
+            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
+            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Delete all orders with given order_id
+        SQL = "DELETE FROM active_orders WHERE order_id = ?";
+        try (PreparedStatement ps = con.prepareStatement(SQL)){
             ps.setInt(1, orderId);
             ps.execute();
         } catch (SQLException ex) {
             System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
             Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }catch (SQLException ex) {
-            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
-            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+//            psCount.setInt(1, orderId);
+//            ResultSet count = psCount.executeQuery();
+//            if (count.next()) {
+//               SQL =  "DELETE FROM a,b,c USING active_orders a NATURAL JOIN orderlines_pizzas b NATURAL JOIN orderlines_toppings c WHERE order_id = ?";
+//            }
+//            else {
+//                SQL = "DELETE FROM a,b USING active_orders a NATURAL JOIN orderlines_pizzas WHERE order_id = ?";
+//            }
+//            try (PreparedStatement ps = con.prepareStatement(SQL)) {
+//            ps.setInt(1, orderId);
+//            ps.execute();
+//        } catch (SQLException ex) {
+//            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
+//            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 }
