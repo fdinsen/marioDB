@@ -55,4 +55,32 @@ public class Controller {
     public void createSavedOrder(Order ord){
         datasource.insertSavdOrder(ord);
     }
+
+    IndividualStatistics getTotalTurnover() {
+        return datasource.getTotalTurnover();
+    }
+
+    IndividualStatistics getAverageOrderPrice() {
+        return datasource.getAverageOrderPrice();
+    }
+
+    IndividualStatistics getTopSellingPizza() {
+        return datasource.getTopSellingPizza();
+    }
+
+    IndividualStatistics getBottomSellingPizza() {
+        return datasource.getWorstSellingPizza();
+    }
+
+    ArrayList<IndividualStatistics> getAllPizzaSales() {
+        return datasource.getAllPizzaSales();
+    }
+
+    ArrayList<IndividualStatistics> getCustomerOrders(int phoneNumber) {
+        return datasource.getCustomerOrders(phoneNumber);
+    }
+
+    IndividualStatistics getAmountOfOrders() {
+        return datasource.getAmountOfOrders();
+    }
 }

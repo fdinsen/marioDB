@@ -25,7 +25,7 @@ public class Statistics {
     // GETTERS //
     //---------//
     public IndividualStatistics getAmountOfOrders() {
-        return controller.getAmountOfOrders;
+        return controller.getAmountOfOrders();
     }
     
     public IndividualStatistics getTotalTurnover() {
