@@ -27,10 +27,11 @@ public class IndividualStatistics {
         this.pizzaName = pizzaName;
         this.salesNumber = amountOfSales;
     }
-    public IndividualStatistics(String pizzaName, String toppings, LocalDateTime orderDate) {
+    public IndividualStatistics(String pizzaName, String toppings, LocalDateTime orderDate, double price) {
         this.pizzaName = pizzaName;
         this.toppings = toppings;
         this.orderDate = orderDate;
+        this.price = price;
     }
     
     //---------//

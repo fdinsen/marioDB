@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import model.IndividualStatistics;
 
@@ -135,7 +137,14 @@ public class StaticsticsMapper {
     }
 
     public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo) {
+
         ArrayList<IndividualStatistics> list = new ArrayList<>();
+
+        String pizza_name = "";
+        String pizza_topping = "";
+        int pizza_price = 0;
+        String pickup_time = "";
+
         try {
             String SQL = "SELECT pizza_name,pizza_topping,pizza_price,pickup_time,customer_phone \n"
                     + "from saved_orders "
@@ -145,18 +154,28 @@ public class StaticsticsMapper {
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1,phoneNo);
+            ps.setInt(1, phoneNo);
 
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
+
+                pizza_name = rs.getString("pizza_name");
+                pizza_topping = rs.getString("pizza_topping");
+                pizza_price = rs.getInt("pizza_price");
+
+                pickup_time = rs.getString("pickup_time");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime dateTime = LocalDateTime.parse(pickup_time, formatter);
+
+                list.add(new IndividualStatistics(pizza_name, pizza_topping,dateTime, pizza_price));
                 
             }
-            
+
         } catch (SQLException ex) {
             System.out.println(ex + "connection failed");
         }
 
-        return null;
+        return list;
     }
 }
