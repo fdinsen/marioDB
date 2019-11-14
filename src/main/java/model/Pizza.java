@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Pizza {
-    
+
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
@@ -15,48 +15,48 @@ public class Pizza {
     private double totalPizzaPrice;
     private int orderLineID;
     private ArrayList<Integer> defaultToppingsID;
-    
+
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public Pizza(int id, String name, int price,ArrayList<Integer> defaultToppingsID){
+    public Pizza(int id, String name, int price, ArrayList<Integer> defaultToppingsID) {
         this.name = name;
         this.totalPizzaPrice += price;
         this.pizzaNo = id;
         this.defaultToppingsID = defaultToppingsID;
     }
-    
+
     //---------//
     // METHODS //
     //---------//
-    public void addExtraTopping(Topping top){
+    public void addExtraTopping(Topping top) {
         extraToppings.add(top);
         totalPizzaPrice += top.getToppingPrice();
-        
-    }
-    
-    public void addTopping(Topping top){
-        toppings.add(top);
+
     }
 
+    public void addTopping(Topping top) {
+        toppings.add(top);
+    }
 
     //---------//
     // SETTERS //
     //---------//
-    public void setOrderLineID(int id){
+    public void setOrderLineID(int id) {
         this.orderLineID = id;
     }
+
     public void setPizzaSize(PizzaSize size) {
         this.size = size;
     }
 
-
     //---------//
     // GETTERS //
     //---------//
-    public int geOrderLineID(){
+    public int geOrderLineID() {
         return orderLineID;
     }
+
     public String getPizzaName() {
         return name;
     }
@@ -65,7 +65,7 @@ public class Pizza {
         return pizzaNo;
     }
 
-    public String getPizzaSizeString(){
+    public String getPizzaSizeString() {
         return size.toString();
     }
 
@@ -73,25 +73,28 @@ public class Pizza {
         return totalPizzaPrice;
     }
 
-    public ArrayList<Integer> getDefaultToppingsID(){
+    public ArrayList<Integer> getDefaultToppingsID() {
         return defaultToppingsID;
     }
 
-    public ArrayList<Topping> getAllToppingsOnPizza(){return toppings;}
+    public ArrayList<Topping> getAllToppingsOnPizza() {
+        return toppings;
+    }
 
     public ArrayList<Topping> getAllExtraToppingsOnPizza() {
         return extraToppings;
     }
 
-
-    public String getAllToppingsString(){
+    public String getAllToppingsString() {
         StringBuilder returnString = null;
 
-        for(Topping top : toppings){
+        for (Topping top : toppings) {
             returnString.append(top.getToppingName()).append(" ");
         }
-        for(Topping top : extraToppings){
-            returnString.append(top.getToppingName()).append(" ");
+        if (!extraToppings.isEmpty()) {
+            for (Topping top : extraToppings) {
+                returnString.append(top.getToppingName()).append(" ");
+            }
         }
 
         return returnString.toString();
