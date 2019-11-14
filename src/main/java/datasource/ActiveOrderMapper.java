@@ -35,6 +35,7 @@ class ActiveOrderMapper {
                 totalPrice = rsOrders.getDouble("total_price");
                 customerPhone = rsOrders.getInt("customer_phone");
                 orders.add(new Order(new CustomerMapper().getCustomer(customerPhone)));
+                orders.get(orderCounter).setOrderID(orderId);
                 Statement stmt2 = con.createStatement();
                 ResultSet rsPizza = stmt2.executeQuery("SELECT * FROM orderlines_pizzas WHERE order_id = " + orderId);
                 int pizzaCounter = 0;
@@ -97,6 +98,7 @@ class ActiveOrderMapper {
             int currentOrderId = 0;
             if (orderId.next()) {
                 currentOrderId = orderId.getInt(1);
+                ord.setOrderID(currentOrderId);
             }
             ps.close();
             for (Pizza pizza : ord.getAllPizzasOnOrder()) {
@@ -131,11 +133,35 @@ class ActiveOrderMapper {
     void removeOrder(int orderId) {
         con = DBConnector.getConnection();
         //TODO Find sql statement that deletes all rows on order_id, right now there needs to be an order_id that matches in every table..
-        String SQL = "DELETE FROM a,b,c USING active_orders a JOIN orderlines_pizzas b JOIN orderlines_toppings c WHERE a.order_id = ?";
-        try (PreparedStatement ps = con.prepareStatement(SQL)) {
+//        String SQL = "DELETE FROM a,b USING active_orders a JOIN orderlines_pizzas WHERE a.order_id = ?";
+//        try (PreparedStatement ps = con.prepareStatement(SQL)) {
+//            ps.setInt(1, orderId);
+//            ps.execute();
+//        } catch (SQLException ex) {
+//            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
+//            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        
+        String SQL = "SELECT count(*) FROM orderlines_toppings WHERE order_id = ?";
+        try (PreparedStatement psCount = con.prepareStatement(SQL)) {
+            psCount.setInt(1, orderId);
+            ResultSet count = psCount.executeQuery();
+            if (count.next()) {
+               SQL =  "DELETE FROM a,b,c USING active_orders a JOIN orderlines_pizzas b JOIN orderlines_toppings c WHERE a.order_id = ?";
+            }
+            else {
+                SQL = "DELETE FROM a,b USING active_orders a JOIN orderlines_pizzas WHERE a.order_id = ?";
+            }
+            try (PreparedStatement ps = con.prepareStatement(SQL)) {
             ps.setInt(1, orderId);
             ps.execute();
         } catch (SQLException ex) {
+            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
+            Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }catch (SQLException ex) {
+            System.out.println("SQL ERROR AT ActiveOrderMapper -> removeOrder()");
             Logger.getLogger(ActiveOrderMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
