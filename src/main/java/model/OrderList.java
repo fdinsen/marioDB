@@ -70,6 +70,8 @@ public class OrderList {
     //---------//
     public void setCustomerName(String name, int pos){
         activeOrders.get(pos-1).setCustomerName(name);
+        int phoneNumber = activeOrders.get(pos-1).getCustomerPhone();
+        controller.updateCustomerName(phoneNumber,name);
     }
 
     //---------//
@@ -101,7 +103,7 @@ public class OrderList {
     }
 
     public boolean doesHaveCustomerName(int index) {
-        return activeOrders.get(index).hasName;
+        return activeOrders.get(index-1).hasName;
     }
 
     public void addExtraTopping(int orderArrayPosition, int pizzaPos, Topping topping) {
