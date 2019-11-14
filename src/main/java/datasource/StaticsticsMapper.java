@@ -121,7 +121,7 @@ public class StaticsticsMapper {
         try {
             con = DBConnector.getConnection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT pizza_name,count(pizza_name) as count from saved_orders_pizzas group by pizza_name order by count(pizza_name)");
+            ResultSet rs = stmt.executeQuery("SELECT pizza_name,count(pizza_name) as count from saved_orders_pizzas group by pizza_name order by count(pizza_name) desc");
 
             while (rs.next()) {
                 name = rs.getString("pizza_name");
