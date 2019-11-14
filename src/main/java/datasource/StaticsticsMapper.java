@@ -139,24 +139,16 @@ public class StaticsticsMapper {
     public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo) {
 
         ArrayList<IndividualStatistics> list = new ArrayList<>();
-
+        Statement stmt = null;
         String pizza_name = "";
         String pizza_topping = "";
         int pizza_price = 0;
         String pickup_time = "";
 
         try {
-            String SQL = "SELECT pizza_name,pizza_topping,pizza_price,pickup_time,customer_phone \n"
-                    + "from saved_orders "
-                    + "natural join saved_orders_pizzas "
-                    + "natural join customers "
-                    + "where customer_phone = ?";
             con = DBConnector.getConnection();
-            PreparedStatement ps = con.prepareStatement(SQL);
-
-            ps.setInt(1, phoneNo);
-
-            ResultSet rs = ps.executeQuery();
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT pizza_name,pizza_topping,pizza_price,pickup_time,saved_orders.customer_phone from saved_orders natural join saved_orders_pizzas natural join customers where saved_orders.customer_phone = " + phoneNo);
 
             while (rs.next()) {
 
@@ -165,7 +157,7 @@ public class StaticsticsMapper {
                 pizza_price = rs.getInt("pizza_price");
 
                 pickup_time = rs.getString("pickup_time");
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(pickup_time, formatter);
 
                 list.add(new IndividualStatistics(pizza_name, pizza_topping,dateTime, pizza_price));

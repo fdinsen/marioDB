@@ -5,6 +5,7 @@
  */
 package model;
 
+import datasource.DBFacade;
 import datasource.DataSource;
 import factory.DataSourceFactory;
 import factory.DataSources;
@@ -16,28 +17,34 @@ import static org.junit.Assert.*;
  * @author olvvang
  */
 public class MenuTest {
-    
+    Menu menu;
     public MenuTest() {
+        DataSource source = new DBFacade();
+        menu = new Menu(source);
     }
-
     @Test
-    public void menuConstructerNumberOfPizzasTest(){
-        DataSourceFactory dataSourceFactory = new DataSourceFactory();
-        DataSource dataSource = dataSourceFactory.getDataSource(DataSources.DATABASE);
-        Menu menu = new model.Menu(dataSource);
-        int expectedLength = 30;
-        int actualLength = menu.getNumberOfPizzas();
-        assertEquals(expectedLength, actualLength);
+    public void testGetAmountOfPizzas(){
+        int expspected = 30;
+        
+        int actual = menu.getAmountOfPizzas();
+        
+        assertEquals(expspected, actual);
+        
     }
-    
     @Test
-    public void menuSetDefaultToppingsNameTest(){
-        DataSourceFactory dataSourceFactory = new DataSourceFactory();
-        DataSource dataSource = dataSourceFactory.getDataSource(DataSources.DATABASE);
-        Menu menu = new model.Menu(dataSource);
-        String actualName = menu.getPizza(1).getTopping(0).getToppingName();
-        String ExpectedName = "Tuna fish";
-        assertEquals(ExpectedName, actualName);
+    public void testGetAmountOfToppings(){
+        int exspected = 53;
+        
+        int acutal = menu.getAmountOfToppings();
+        
+        assertEquals(exspected, acutal);
     }
-    
+    @Test
+    public void testGetPizza(){
+        String exspected = "Quattro";
+        
+        String actual = menu.getPizza(3).getPizzaName();
+        
+        assertEquals(exspected, actual);
+    }
 }
