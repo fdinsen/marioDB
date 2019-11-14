@@ -33,14 +33,12 @@ public class Order {
         Pizza pizza = pizz;
         pizza.setPizzaSize(size);
         pizzas.add(pizza);
-        totalPrice += pizza.getTotalPizzaPrice();
+        calculateTotalPrice();
     }
     public void addExtraTopping(int orderLineID,Topping top){
         orderLineID = orderLineID;
 
         pizzas.get(orderLineID).addExtraTopping(top);
-
-        calculateTotalPrice();
         
     }
     
@@ -108,6 +106,10 @@ public class Order {
 
     public String getCustomerName() {
         return  customer.getCustomerName();
+    }
+
+    public int getOrderID() {
+        return orderID;
     }
     
     //---------//
