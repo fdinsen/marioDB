@@ -62,6 +62,7 @@ public class NewOrderUI {
                         customer = controller.getCustomer(phoneNumber);
                         orderArrayPosition = orderlist.createOrder(customer);
                         addPizzaDialog(orderArrayPosition);
+                        orderlist.setCustomerName("DEFAULT USER", orderArrayPosition);
                         exit = true;
                         break;
                     case 3:

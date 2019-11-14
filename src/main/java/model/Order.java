@@ -14,6 +14,7 @@ public class Order {
     private double totalPrice;
     //TODO get the OrderID from database
     private int orderID;
+    boolean hasName = false;
     
     //--------------//
     // CONSTRUCTERS //
@@ -66,6 +67,11 @@ public class Order {
     //---------//
     public void setCustomerName(String name){
         this.customer.setCustomerName(name);
+        hasName = true;
+    }
+    
+    public void setOrderID(int orderID){
+        this.orderID = orderID;
     }
 
     //---------//

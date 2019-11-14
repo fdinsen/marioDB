@@ -64,7 +64,13 @@ public class OrderList {
     public double getTotalPrice(int index) {
         return activeOrders.get(index-1).getTotalPrice();
     }
-
+    
+    //---------//
+    // SETTERS //
+    //---------//
+    public void setCustomerName(String name, int pos){
+        activeOrders.get(pos-1).setCustomerName(name);
+    }
 
     //---------//
     // METHODS //
@@ -95,10 +101,7 @@ public class OrderList {
     }
 
     public boolean doesHaveCustomerName(int index) {
-        if(getOrder(index).getCustomerName().equals("DEFAULT USER")){
-            return false;
-        }
-        return true;
+        return activeOrders.get(index).hasName;
     }
 
     public void addExtraTopping(int orderArrayPosition, int pizzaPos, Topping topping) {
