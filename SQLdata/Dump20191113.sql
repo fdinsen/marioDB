@@ -89,7 +89,7 @@ CREATE TABLE `orderlines_pizzas` (
 
 LOCK TABLES `orderlines_pizzas` WRITE;
 /*!40000 ALTER TABLE `orderlines_pizzas` DISABLE KEYS */;
-INSERT INTO `orderlines_pizzas` VALUES (1,1,'1'),(2,2,'5'),(3,1,'5');
+INSERT INTO `orderlines_pizzas` VALUES (1,1,'1',1),(2,2,'5',0),(3,1,'5',0);
 /*!40000 ALTER TABLE `orderlines_pizzas` ENABLE KEYS */;
 UNLOCK TABLES;
 
