@@ -12,44 +12,44 @@ import java.util.ArrayList;
  * @author <Frederik Keis Dinsen>
  */
 public class Statistics {
-    private final Controller contoller;
+    private final Controller controller;
     
     //-------------//
     // CONSTRUCTOR //
     //-------------//
     public Statistics(Controller controller) {
-        this.contoller = controller;
+        this.controller = controller;
     }
     
     //---------//
     // GETTERS //
     //---------//
     public IndividualStatistics getAmountOfOrders() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return controller.getAmountOfOrders;
     }
     
     public IndividualStatistics getTotalTurnover() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return controller.getTotalTurnover();
     }
     
     public IndividualStatistics getAverageOrderPrice() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return controller.getAverageOrderPrice();
     }
     
     public IndividualStatistics getTopSellingPizza() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return controller.getTopSellingPizza();
     }
     
     public IndividualStatistics getBottomSellingPizza() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return controller.getBottomSellingPizza();
     }
 
-    public ArrayList<IndividualStatistics> getAllPizzaStatistics() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<IndividualStatistics> getAllPizzaSales() {
+        return controller.getAllPizzaSales();
     }
 
-    public ArrayList<IndividualStatistics> getCustomerOrders() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNumber) {
+        return controller.getCustomerOrders(phoneNumber);
     }
     
 }

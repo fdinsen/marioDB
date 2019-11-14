@@ -59,7 +59,7 @@ public class StatisticsUI {
         do {
             System.out.println("Mario's Pizzaria - Statistik - Pizzaer");
             System.out.println("-------------------------");
-            for (IndividualStatistics indivStat : statistics.getAllPizzaStatistics()) {
+            for (IndividualStatistics indivStat : statistics.getAllPizzaSales()) {
                 counter++;
                 System.out.println(counter + ". " + indivStat.getPizzaName() + " x" + indivStat.getSalesNumber());
             }
