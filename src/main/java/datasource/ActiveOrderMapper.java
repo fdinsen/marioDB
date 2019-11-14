@@ -56,7 +56,7 @@ class ActiveOrderMapper {
                     }
                     orders.get(orderCounter).addPizza(pizzas.get(pizzaId), psize);
                     int orderlineId = rsPizza.getInt("orderline_id");
-                    orders.get(orderCounter).getAllPizzasOnOrder().get(pizzaCounter).setOrderlineID(orderlineId);
+                    orders.get(orderCounter).getAllPizzasOnOrder().get(pizzaCounter).setOrderLineID(orderlineId);
                     //TODO use subquery to get all the toppings for this pizza
 
                     Statement stmt3 = con.createStatement();
@@ -112,7 +112,7 @@ class ActiveOrderMapper {
                 int currentOrderlineId = 0;
                 if (orderlineId.next()) {
                     currentOrderlineId = orderlineId.getInt(1);
-                    pizza.setOrderlineID(currentOrderlineId);
+                    pizza.setOrderLineID(currentOrderlineId);
                 }
                 ps.close();
                 for (Topping topping : pizza.getAllExtraToppingsOnPizza()) {
