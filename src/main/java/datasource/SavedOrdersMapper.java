@@ -29,7 +29,7 @@ public class SavedOrdersMapper {
             ResultSet ids = ps.getGeneratedKeys();
             
             SQL = "INSERT into saved_orders_pizzas (saved_order_id, pizza_name, pizza_topping, pizza_price) VALUES (?,?,?,?)";
-            
+            ps = con.prepareStatement(SQL);
             ids.next();
             int id = ids.getInt(1);
             
@@ -46,9 +46,6 @@ public class SavedOrdersMapper {
         }catch (SQLException ex){
             System.out.println(ex + "connection failed");
         }
-        
-        
-        
     }
 
     public ArrayList<Order> getSavedOrders() {
