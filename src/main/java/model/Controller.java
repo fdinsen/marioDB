@@ -40,16 +40,19 @@ public class Controller {
         datasource.insertOrder(order);
     }
 
-    ArrayList<Order> getAllActiveOrders(ArrayList<Pizza> allPizzas, ArrayList<Topping> allToppings) {
+    public ArrayList<Order> getAllActiveOrders(ArrayList<Pizza> allPizzas, ArrayList<Topping> allToppings) {
         return datasource.getAllActiveOrders(allPizzas, allToppings);
     }
 
-    void removePizza(int orderNumber, int pizzaNumber) {
+    public void removePizza(int orderNumber, int pizzaNumber) {
         //TODO add function
         //datasource.removePizza(orderNumber,pizzaNumber);
     }
 
-    void removeOrder(int orderNo) {
+    public void removeOrder(int orderNo) {
         datasource.removeOrder(orderNo);
+    }
+    public void createSavedOrder(Order ord){
+        datasource.insertSavdOrder(ord);
     }
 }

@@ -56,8 +56,8 @@ public class Order {
         
     }
     
-    public void removePizzaFromOrder(int orderLineID){
-
+    public void removePizzaFromOrder(int pizzaNumber){
+        pizzas.remove(pizzaNumber);
         
     }
     //---------//
@@ -75,6 +75,9 @@ public class Order {
     //---------//
     // GETTERS //
     //---------//
+    public int getPizzaOrderLineID(int index){
+        return pizzas.get(index).geOrderLineID();
+    }
     public Customer getCustomer(){
         return customer;
     }

@@ -13,6 +13,7 @@ public class Pizza {
     private PizzaSize size;
     private int pizzaNo;
     private double totalPizzaPrice;
+    private int orderLineID;
     private ArrayList<Integer> defaultToppingsID;
     
     //--------------//
@@ -42,14 +43,20 @@ public class Pizza {
     //---------//
     // SETTERS //
     //---------//
+    public void setOrderLineID(int id){
+        this.orderLineID = id;
+    }
     public void setPizzaSize(PizzaSize size) {
         this.size = size;
     }
 
 
     //---------//
-    // METHODS //
+    // GETTERS //
     //---------//
+    public int geOrderLineID(){
+        return orderLineID;
+    }
     public String getPizzaName() {
         return name;
     }
