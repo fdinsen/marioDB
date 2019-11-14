@@ -81,5 +81,10 @@ public class DBFacade implements DataSource{
     public Customer createCustomer(int phoneNo) {
         return new CustomerMapper().createCustomer(phoneNo);
     }
+    
+    @Override
+    public void updateCustomerName(int phoneNo, String name) {
+        new CustomerMapper().updateName(phoneNo, name);
+    }
 
 }

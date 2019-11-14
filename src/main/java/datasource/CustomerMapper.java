@@ -67,7 +67,7 @@ public class CustomerMapper {
 
     public Customer createCustomer(int phoneNo) {
         try {
-            String SQL = "INSERT into customers (customer_phone) VALUES ( ?) ";
+            String SQL = "INSERT into customers (customer_phone) VALUES (?) ";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL);
             

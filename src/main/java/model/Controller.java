@@ -22,10 +22,8 @@ public class Controller {
         ui.startUI(this,menu,orderlist);
     }
     
-    public boolean checkIfCustomerExists(){
-        
-        
-        return false;
+    public boolean checkIfCustomerExists(int phoneNo){
+        return datasource.customerExits(phoneNo);
     }
     public Customer createCustomer(int phoneNo){
         return datasource.createCustomer(phoneNo);
