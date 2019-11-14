@@ -38,7 +38,7 @@ public class StatisticsUI {
             System.out.println("3 - Gå tilbage");
 
             selection = inputVal.getUserInput();
-            if (selection == 1) { 
+            if (selection == 1) {
                 printAllPizzasStatistics();
             } else if (selection == 2) {
                 searchCustomer();
@@ -75,29 +75,44 @@ public class StatisticsUI {
 
     private void searchCustomer() {
         boolean exit = false;
+        boolean exit1 = false;
         int selection;
         int counter = 0;
+        int userInput = 0;
         System.out.println("Mario's Pizzaria - Statistik - Kunde");
-            System.out.println("-------------------------");
+        System.out.println("-------------------------");
         do {
             System.out.println("Indtast telefon nr. på kunden");
             System.out.println("1 - Gå tilbage");
             selection = inputVal.getUserInput();
             if (selection == 1) {  //Go back
                 exit = true;
-            } else if(inputVal.isValidPhoneNumber(selection)){
+            } else if (inputVal.isValidPhoneNumber(selection)) {
                 //true
-                if(!statistics.getCustomerOrders(selection).isEmpty()){
+                if (!statistics.getCustomerOrders(selection).isEmpty()) {
                     //not empty
-                    for(IndividualStatistics indivStat: statistics.getCustomerOrders(selection)){
-                        System.out.println(indivStat.getPizzaName());
-                        exit = true;
-                    }
-                }else{
+                    do {
+                        for (IndividualStatistics indivStat : statistics.getCustomerOrders(selection)) {
+                            System.out.println(indivStat.getPizzaName() + "\n\t" + indivStat.getOrderTime() + " - " + indivStat.getPrice() + " kr.");
+                            System.out.println("\t Toppings: " + indivStat.getToppingsString());
+
+                        }
+
+                        System.out.println("1 - gå tilbage");
+                        userInput = inputVal.getUserInput();
+
+                        if (userInput == 1) {
+                            //Exit
+                            exit1 = true;
+                            exit = true;
+                        }
+                        //Wrong user info
+                    } while (!exit1);
+                } else {
                     //empty
                     System.out.println(selection + " kunne ikke findes");
                 }
-            }else{
+            } else {
                 System.err.println(selection + " Er ikke et korrekt telefon nr. eller forkert input\n");
             }
         } while (!exit);
