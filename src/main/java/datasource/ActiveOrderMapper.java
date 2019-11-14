@@ -54,7 +54,7 @@ class ActiveOrderMapper {
                         default:
                             psize = PizzaSize.NORMAL;
                     }
-                    orders.get(orderCounter).addPizza(pizzas.get(pizzaId), psize);
+                    orders.get(orderCounter).addPizza(pizzas.get(pizzaId-1), psize);
                     int orderlineId = rsPizza.getInt("orderline_id");
                     orders.get(orderCounter).getAllPizzasOnOrder().get(pizzaCounter).setOrderLineID(orderlineId);
                     //TODO use subquery to get all the toppings for this pizza

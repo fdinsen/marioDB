@@ -59,7 +59,7 @@ public class NewOrderUI {
                         break;
                     case 2:
                         //Not ordered by phone
-                        phoneNumber = 00000000;
+                        phoneNumber = 0;
                         customer = controller.getCustomer(phoneNumber);
                         orderArrayPosition = orderlist.createOrder(customer);
                         addPizzaDialog(orderArrayPosition);

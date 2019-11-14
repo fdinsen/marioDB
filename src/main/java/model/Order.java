@@ -30,7 +30,7 @@ public class Order {
     
     public void addPizza(Pizza pizz, PizzaSize size){
         //TODO Copy pizza
-        Pizza pizza = pizz;
+        Pizza  pizza = pizz;
         pizza.setPizzaSize(size);
         pizzas.add(pizza);
         calculateTotalPrice();
