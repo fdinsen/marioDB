@@ -77,6 +77,7 @@ CREATE TABLE `orderlines_pizzas` (
   `orderline_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `pizza_id` varchar(45) DEFAULT NULL,
+  `pizza_size` int DEFAULT 0,
   PRIMARY KEY (`orderline_id`),
   UNIQUE KEY `orderline_id_UNIQUE` (`orderline_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
