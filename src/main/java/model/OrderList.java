@@ -71,7 +71,6 @@ public class OrderList {
     public void setCustomerName(String name, int pos){
         activeOrders.get(pos-1).setCustomerName(name);
         int phoneNumber = activeOrders.get(pos-1).getCustomerPhone();
-        controller.updateCustomerName(phoneNumber,name);
     }
 
     //---------//

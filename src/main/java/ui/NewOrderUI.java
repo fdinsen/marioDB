@@ -49,6 +49,7 @@ public class NewOrderUI {
                             customer = controller.getCustomer(phoneNumber);
                         }else{
                             customer = controller.createCustomer(phoneNumber);
+                            controller.updateCustomerName(phoneNumber,customer.getCustomerName());
                         }
                         orderArrayPosition = orderlist.createOrder(customer);
                         
