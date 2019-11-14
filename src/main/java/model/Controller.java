@@ -44,7 +44,7 @@ public class Controller {
         return datasource.getAllActiveOrders(allPizzas, allToppings);
     }
 
-    public void removePizza(int orderNumber, int pizzaNumber) {
+    public void removePizzaFromOrder(int orderNumber, int pizzaNumber) {
         //TODO add function
         //datasource.removePizza(orderNumber,pizzaNumber);
     }

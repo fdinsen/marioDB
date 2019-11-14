@@ -77,7 +77,12 @@ public class OrderList {
     // METHODS //
     //---------//
     public void completeOrder(int index){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int orderID = activeOrders.get(index-1).getOrderID();
+        
+        controller.removeOrder(orderID);
+        controller.createSavedOrder(activeOrders.get(index-1));
+        
+        activeOrders.remove(index-1);
     }
 
     public int createOrder(Customer customer){
@@ -85,13 +90,17 @@ public class OrderList {
         return activeOrders.size();
     }
 
-    public void deleteOrder(int orderNo){
-        controller.removeOrder(orderNo-1);
+    public void deleteOrder(int index){
+        int orderID = activeOrders.get(index-1).getOrderID();
+        controller.removeOrder(orderID);
         
+        activeOrders.remove(index-1);
     }
 
-    public void deletePizzaFromOrder(int orderNumber, int pizzaNumber) {
-        controller.removePizza(orderNumber, pizzaNumber);
+    public void deletePizzaFromOrder(int index, int pizzaNumber) {
+        int orderID = activeOrders.get(index-1).getOrderID();
+        int pizzaID = activeOrders.get(index-1).getPizzaOrderLineID(pizzaNumber);
+        controller.removePizzaFromOrder(orderID, pizzaID);
     }
 
     public boolean doesHaveCustomerPhone(int index) {
