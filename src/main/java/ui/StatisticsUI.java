@@ -77,9 +77,9 @@ public class StatisticsUI {
         boolean exit = false;
         int selection;
         int counter = 0;
-        do {
-            System.out.println("Mario's Pizzaria - Statistik - Kunde");
+        System.out.println("Mario's Pizzaria - Statistik - Kunde");
             System.out.println("-------------------------");
+        do {
             System.out.println("Indtast telefon nr. på kunden");
             System.out.println("1 - Gå tilbage");
             selection = inputVal.getUserInput();
@@ -91,12 +91,14 @@ public class StatisticsUI {
                     //not empty
                     for(IndividualStatistics indivStat: statistics.getCustomerOrders(selection)){
                         System.out.println(indivStat.getPizzaName());
+                        exit = true;
                     }
                 }else{
                     //empty
+                    System.out.println(selection + " kunne ikke findes");
                 }
             }else{
-                System.err.println(selection + "Er ikke et korrekt telefon nr. eller forkert input");
+                System.err.println(selection + " Er ikke et korrekt telefon nr. eller forkert input\n");
             }
         } while (!exit);
     }

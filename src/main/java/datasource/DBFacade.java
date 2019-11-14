@@ -112,6 +112,6 @@ public class DBFacade implements DataSource{
     }
     @Override
     public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo){
-        return new StaticsticsMapper().getAllPizzaSales();
+        return new StaticsticsMapper().getCustomerOrders(phoneNo);
     }
 }
