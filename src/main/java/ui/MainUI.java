@@ -1,26 +1,28 @@
 package ui;
 
 import model.Controller;
+import model.IndividualStatistics;
 import model.Menu;
 import model.OrderList;
+import model.Statistics;
 
 /**
  *
  * @author <Frederik Keis Dinsen>
  */
 public class MainUI implements UI {
-    private Controller controller;
     private Menu menu;
-    private OrderList orderlist;
     private NewOrderUI newOrderUI;
     private ActiveOrdersUI activeOrdersUI;
+    private StatisticsUI statisticsUI;
+    private Statistics statistics;
     
     public void startUI(Controller controller,Menu menu, OrderList orderlist) {
-        this.controller = controller;
         this.menu = menu;
-        this.orderlist = orderlist;
         this.newOrderUI = new NewOrderUI(menu, orderlist,controller);
         this.activeOrdersUI = new ActiveOrdersUI(orderlist,newOrderUI);
+        this.statistics = new Statistics(controller);
+        this.statisticsUI = new StatisticsUI(statistics);
         mainMenuDialog();
     }
     //--------------------//
@@ -64,7 +66,7 @@ public class MainUI implements UI {
                         break;
                     case 4:
                         //Viser staistik
-                        //statisticsUI.statisticsDialog();
+                        statisticsUI.statisticsDialog();
                         break;
                     case 55:
                         //Slutter program

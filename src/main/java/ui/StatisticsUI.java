@@ -10,14 +10,12 @@ public class StatisticsUI {
     //--------------------//
     private InputValidation inputVal = InputValidation.getInstance();
     private Statistics statistics;
-    private IndividualStatistics individualStatistics;
 
     //--------------//
     // CONSTRUCTORS //
     //--------------//
-    private StatisticsUI(Statistics statistics, IndividualStatistics individualStatistics) {
+    StatisticsUI(Statistics statistics) {
         this.statistics = statistics;
-        this.individualStatistics = individualStatistics;
     }
 
     //------------------//
@@ -89,9 +87,9 @@ public class StatisticsUI {
                 exit = true;
             } else if(inputVal.isValidPhoneNumber(selection)){
                 //true
-                if(!statistics.getCustomerOrders().isEmpty()){
+                if(!statistics.getCustomerOrders(selection).isEmpty()){
                     //not empty
-                    for(IndividualStatistics indivStat: statistics.getCustomerOrders()){
+                    for(IndividualStatistics indivStat: statistics.getCustomerOrders(selection)){
                         System.out.println(indivStat.getPizzaName());
                     }
                 }else{
