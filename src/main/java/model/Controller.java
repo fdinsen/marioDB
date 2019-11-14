@@ -22,6 +22,9 @@ public class Controller {
         ui.startUI(this,menu,orderlist);
     }
     
+    public void updateCustomerName(int phoneNo, String name) {
+        datasource.updateCustomerName(phoneNo, name);
+    }
     public boolean checkIfCustomerExists(int phoneNo){
         return datasource.customerExits(phoneNo);
     }
