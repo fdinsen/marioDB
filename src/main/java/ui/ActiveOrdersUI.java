@@ -6,7 +6,7 @@ import model.Pizza;
 import model.Topping;
 
 
-public class ActiveOrdersUI {
+class ActiveOrdersUI {
 
     //--------------------//
     // INSTANCE VARIABLES //
@@ -157,12 +157,12 @@ public class ActiveOrdersUI {
                     break;
                 case 4:
                     //Complete Order
-                    completeOrder(orderNumber);
+                    orderlist.completeOrder(orderNumber);
                     exit = true;
                     break;
                 case 5:
                     //Mark order as lost
-                    completeOrder(orderNumber, true);
+                    orderlist.completeOrder(orderNumber, true);
                     exit = true;
                     break;
                 case 6:
@@ -212,39 +212,14 @@ public class ActiveOrdersUI {
         for (Pizza pizza : orderlist.getAllPizzasInOrder(index)) {
             stringOrder.append(counter).append(". ").append(pizza.getPizzaName()).append(" -- ");
 
-            counter++;
+
 
             //Adds price
             stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
-            
-            //Prints Default Toppings
-            stringOrder.append("\nDefault Toppings: ");
-                for (Topping extraTopping : pizza.getAllToppingsOnPizza()) {
-                    //For each topping name
-                    stringOrder.append(" ").append(extraTopping.getToppingName());
 
-                    //If there is more than 1 topping add ,
-                    if (pizza.getAllToppingsOnPizza().size() > 1) {
-                        stringOrder.append(", ");
-                    }
-                }
-            
-            //Checks if any extra toppings are added
-            if (!pizza.getAllExtraToppingsOnPizza().isEmpty()) {
-                //Adds the toppings
-                stringOrder.append("\n\t\tExtra Toppings: ");
-                for (Topping extraTopping : pizza.getAllExtraToppingsOnPizza()) {
-                    //For each topping name
-                    stringOrder.append(" ").append(extraTopping.getToppingName());
+            //Adds toppings
+            ToppingsBuilder(stringOrder, pizza);
 
-                    //If there is more than 1 topping add ,
-                    if (pizza.getAllExtraToppingsOnPizza().size() > 1) {
-                        stringOrder.append(", ");
-                    }
-                }
-
-            }
-            
             //Adds unless its the lastline
             if (orderlist.getOrder(index).getAmountOfPizzasOnOrder() >= counter) {
                 stringOrder.append("\n-----\n");
@@ -253,7 +228,6 @@ public class ActiveOrdersUI {
         //Prints it all
         System.out.println(stringOrder);
     }
-
     private void showOrder(int index) {
         if (orderlist.getOrdersListSize() > 0) {
             printOrder(index);
@@ -335,11 +309,11 @@ public class ActiveOrdersUI {
         int counter = 1;
         StringBuilder stringOrder = new StringBuilder();
         //If name exits add to string
-        if (orderlist.getCustomerName(index) != null) {
+        if (orderlist.doesHaveCustomerName(index)) {
             stringOrder.append("Kunde Navn: ").append(orderlist.getCustomerName(index)).append("\n");
         }
         //If phone number exits add to string
-        if (orderlist.isOrderedByPhone(index)) {
+        if (orderlist.doesHaveCustomerPhone(index)) {
             stringOrder.append("Kunde Tlf: ").append(orderlist.getCustomerPhone(index)).append("\n");
         }
         stringOrder.append("-----\n");
@@ -351,49 +325,41 @@ public class ActiveOrdersUI {
 
             //Adds the price
             stringOrder.append("\t").append(pizza.getTotalPizzaPrice()).append(" kr.");
-
-                //Adds the extra toppings
-                stringOrder.append("\nToppings: ");
-                for (Topping Topping : pizza.getAllToppingsOnPizza()) {
-                    //For each topping add count and name
-                    stringOrder.append(" ").append(Topping.getToppingName());
-
-                    //If more than one topping add ,
-                    if (pizza.getAllToppingsOnPizza().size() > 1) {
-                        stringOrder.append(", ");
-                    }
-                }
             
-            //Checks if any extra toppings are added
-            if (!pizza.getAllExtraToppingsOnPizza().isEmpty()) {
-                //Adds the toppings
-                stringOrder.append("\n\t\tExtra Toppings: ");
-                for (Topping extraTopping : pizza.getAllExtraToppingsOnPizza()) {
-                    //For each topping name
-                    stringOrder.append(" ").append(extraTopping.getToppingName());
+            //Adds toppings
+            ToppingsBuilder(stringOrder, pizza);
 
-                    //If there is more than 1 topping add ,
-                    if (pizza.getAllExtraToppingsOnPizza().size() > 1) {
-                        stringOrder.append(", ");
-                    }
-                }
-
-            }
-            
             stringOrder.append("\n-----\n");
         }
         stringOrder.append("Afhentnings tidspunkt: ").append(orderlist.getPickUpTimeHour(index)).append(":").append(orderlist.getPickUpTimeMinute(index)).append(" ").append("\nTotal Pris: ").append(orderlist.getTotalPrice(index));
         System.out.println(stringOrder);
     }
 
-    //---------//
-    // METHODS //
-    //---------//
-    private void completeOrder(int orderNumber) {
-        orderlist.completeOrder(orderNumber);
-    }
+    private void ToppingsBuilder(StringBuilder stringOrder, Pizza pizza) {
+        stringOrder.append("\nDefault Toppings: ");
+        for (Topping extraTopping : pizza.getAllToppingsOnPizza()) {
+            //For each topping name
+            stringOrder.append(" ").append(extraTopping.getToppingName());
 
-    private void completeOrder(int orderNumber, boolean lostOrder) {
-        orderlist.completeOrder(orderNumber - 1, lostOrder);
+            //If there is more than 1 topping add ,
+            if (pizza.getAllToppingsOnPizza().size() > 1) {
+                stringOrder.append(", ");
+            }
+        }
+
+        if (!pizza.getAllExtraToppingsOnPizza().isEmpty()) {
+            //Adds the toppings
+            stringOrder.append("\n\t\tExtra Toppings: ");
+            for (Topping extraTopping : pizza.getAllExtraToppingsOnPizza()) {
+                //For each topping name
+                stringOrder.append(" ").append(extraTopping.getToppingName());
+
+                //If there is more than 1 topping add ,
+                if (pizza.getAllExtraToppingsOnPizza().size() > 1) {
+                    stringOrder.append(", ");
+                }
+            }
+
+        }
     }
 }

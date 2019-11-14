@@ -10,7 +10,7 @@ public class Topping {
     private int id;
     
     //--------------//
-    // CONSTRUCTERS //
+    // CONSTRUCTOR //
     //--------------//
     public Topping(){
         
@@ -34,12 +34,5 @@ public class Topping {
     public int getToppingId() {
         return id;
     }
-    
-    //---------//
-    //ToString //
-    //---------//
-    @Override
-    public String toString(){
-        return "";
-    }
+
 }

@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Customer;
+
 import model.Order;
 import model.Pizza;
 
@@ -38,7 +36,7 @@ public class SavedOrdersMapper {
             for(Pizza piz : ord.getAllPizzasOnOrder()){
                 ps.setInt(1, id);
                 ps.setString(2,piz.getPizzaName());
-                ps.setString(3,piz.getAllToppings());
+                ps.setString(3,piz.getAllToppingsString());
                 ps.setDouble(4, piz.getTotalPizzaPrice());
                 
                 ps.execute();
@@ -54,5 +52,6 @@ public class SavedOrdersMapper {
     }
 
     public ArrayList<Order> getSavedOrders() {
+        return null;
     }
 }

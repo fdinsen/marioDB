@@ -38,19 +38,18 @@ public class Pizza {
         toppings.add(top);
     }
 
+
+    //---------//
+    // SETTERS //
+    //---------//
     public void setPizzaSize(PizzaSize size) {
         this.size = size;
     }
 
+
     //---------//
-    // GETTERS //
+    // METHODS //
     //---------//
-    public Topping getTopping(int index){
-        return toppings.get(index);
-    }
-    public Topping getExtraTopping(int index){
-        return extraToppings.get(index);
-    }
     public String getPizzaName() {
         return name;
     }
@@ -58,11 +57,7 @@ public class Pizza {
     public int getPizzaNo() {
         return pizzaNo;
     }
-    
-    public PizzaSize getPizzaSize(){
-        return size;
-    }
-    
+
     public String getPizzaSizeString(){
         return size.toString();
     }
@@ -70,40 +65,28 @@ public class Pizza {
     public double getTotalPizzaPrice() {
         return totalPizzaPrice;
     }
+
     public ArrayList<Integer> getDefaultToppingsID(){
         return defaultToppingsID;
     }
 
     public ArrayList<Topping> getAllToppingsOnPizza(){return toppings;}
-    
-    
-    
-    //---------//
-    //ToString //
-    //---------//
-    @Override
-    public String toString(){
-        return "";
-    }
-
-
-    public ArrayList<Topping> getToppingsAdded() {
-        return extraToppings;
-    }
-    public String getAllToppings(){
-        String returnString = null;
-        
-        for(Topping top : toppings){
-            returnString += top.getToppingName()+" ";
-        }
-        for(Topping top : extraToppings){
-            returnString += top.getToppingName() + " ";
-        }
-        
-        return returnString;
-    }
 
     public ArrayList<Topping> getAllExtraToppingsOnPizza() {
         return extraToppings;
+    }
+
+
+    public String getAllToppingsString(){
+        StringBuilder returnString = null;
+
+        for(Topping top : toppings){
+            returnString.append(top.getToppingName()).append(" ");
+        }
+        for(Topping top : extraToppings){
+            returnString.append(top.getToppingName()).append(" ");
+        }
+
+        return returnString.toString();
     }
 }

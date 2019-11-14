@@ -9,16 +9,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Order;
-import model.Customer;
 import model.Pizza;
 import model.PizzaSize;
 import model.Topping;
 
-public class ActiveOrderMapper {
+class ActiveOrderMapper {
 
     private Connection con = null;
 
-    public ArrayList<Order> getActiveOrders(ArrayList<Pizza> pizzas, ArrayList<Topping> toppings) {
+    ArrayList<Order> getActiveOrders(ArrayList<Pizza> pizzas, ArrayList<Topping> toppings) {
         Statement stmt;
         ArrayList<Order> orders = new ArrayList<>();
         //Order order;
@@ -83,7 +82,7 @@ public class ActiveOrderMapper {
         return orders;
     }
 
-    public void insertOrder(Order ord) {
+    void insertOrder(Order ord) {
         con = DBConnector.getConnection();
         String SQL = "INSERT INTO active_orders (total_price, pickup_time, customer_phone) "
                 + "VALUES (?, ?, ?)";
@@ -112,7 +111,7 @@ public class ActiveOrderMapper {
                     currentOrderlineId = orderlineId.getInt(1);
                 }
                 ps.close();
-                for (Topping topping : pizza.getToppingsAdded()) {
+                for (Topping topping : pizza.getAllExtraToppingsOnPizza()) {
                     SQL = "INSERT INTO orderlines_toppings (orderline_id, topping_id, order_id) VALUES (?, ?, ?)";
                     ps = con.prepareStatement(SQL);
                     ps.setInt(1, currentOrderlineId);
@@ -129,7 +128,7 @@ public class ActiveOrderMapper {
 
     }
 
-    public void removeOrder(int orderId) {
+    void removeOrder(int orderId) {
         con = DBConnector.getConnection();
         //TODO Find sql statement that deletes all rows on order_id, right now there needs to be an order_id that matches in every table..
         String SQL = "DELETE FROM a,b,c USING active_orders a JOIN orderlines_pizzas b JOIN orderlines_toppings c WHERE a.order_id = ?";

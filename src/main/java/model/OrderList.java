@@ -1,71 +1,48 @@
 package model;
 
 import java.util.ArrayList;
-import datasource.DataSource;
-import model.Customer;
-import model.Controller;
 
 public class OrderList {
-    
+
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private ArrayList<Order> activeOrders;
     private final Controller controller;
-    
-    public OrderList(Controller controller,Menu menu){
+
+    //--------------//
+    // CONSTRUCTOR //
+    //--------------//
+    OrderList(Controller controller, Menu menu){
         this.controller = controller;
         activeOrders = controller.getAllActiveOrders(menu.getAllPizzas(),menu.getAllToppings());
     }
-    public void completeOrder(int index){
-        
-        
-    }
-    //TODO Creates order returnes orderlistIndex
-    public int createOrder(Customer customer){
-        activeOrders.add((new Order(customer)));
-        return activeOrders.size();
-    }
-    public void deleteOrder(int orderNo){
-        controller.removeOrder(orderNo-1);
-        
-    }
-    public void finishOrder(int orderListIndex){
-        
-        
-    }
 
+    //---------//
+    // GETTERS //
+    //---------//
     public Order getOrder(int orderListIndex){
         return activeOrders.get(orderListIndex-1);
-
     }
-    
+
     public int getOrdersListSize(){
         return activeOrders.size();
     }
-    
+
     public ArrayList<Order> getActiveOrders(){
         return activeOrders;
     }
-    
+
     public ArrayList<Pizza> getAllPizzasInOrder(int index){
-       return  activeOrders.get(index-1).getAllPizzasOnOrder();
+        return  activeOrders.get(index-1).getAllPizzasOnOrder();
     }
-    
+
     public int getPizzaCountOnOrder(int index){
-       return  activeOrders.get(index-1).getAllPizzasOnOrder().size();
-    }
-
-
-
-    public void deletePizzaFromOrder(int orderNumber, int pizzaNumber) {
-        controller.removePizza(orderNumber, pizzaNumber);
+        return  activeOrders.get(index-1).getAllPizzasOnOrder().size();
     }
 
     public String getCustomerName(int index) {
-       return  activeOrders.get(index-1).getCustomerName();
-    }
-    
-
-    public boolean isOrderedByPhone(int index) {
-        return false;
+        return  activeOrders.get(index-1).getCustomerName();
     }
 
     public int getCustomerPhone(int index) {
@@ -75,7 +52,7 @@ public class OrderList {
     public String getPickUpTimeHour(int index) {
         return activeOrders.get(index-1).getPickupTimeHour();
     }
-    
+
     public String getPickUpTimeMinute(int index) {
         return activeOrders.get(index-1).getPickupTimeMinute();
     }
@@ -86,6 +63,42 @@ public class OrderList {
 
     public double getTotalPrice(int index) {
         return activeOrders.get(index-1).getTotalPrice();
+    }
+
+
+    //---------//
+    // METHODS //
+    //---------//
+    public void completeOrder(int index){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int createOrder(Customer customer){
+        activeOrders.add((new Order(customer)));
+        return activeOrders.size();
+    }
+
+    public void deleteOrder(int orderNo){
+        controller.removeOrder(orderNo-1);
+        
+    }
+
+    public void deletePizzaFromOrder(int orderNumber, int pizzaNumber) {
+        controller.removePizza(orderNumber, pizzaNumber);
+    }
+
+    public boolean doesHaveCustomerPhone(int index) {
+        if(getOrder(index).getCustomerPhone() == 00000000){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean doesHaveCustomerName(int index) {
+        if(getOrder(index).getCustomerName().equals("DEFAULT USER")){
+            return false;
+        }
+        return true;
     }
 
     public void addExtraTopping(int orderArrayPosition, int pizzaPos, Topping topping) {
