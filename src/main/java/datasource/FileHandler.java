@@ -70,11 +70,6 @@ public class FileHandler implements DataSource{
     }
 
     @Override
-    public ArrayList<Order> getAllSavedOrders() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void insertSavdOrder(Order ord) {
 
     }
@@ -127,6 +122,16 @@ public class FileHandler implements DataSource{
 
     @Override
     public IndividualStatistics getWorstSellingPizza() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<IndividualStatistics> getAllPizzaSales() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

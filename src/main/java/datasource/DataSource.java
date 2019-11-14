@@ -34,4 +34,5 @@ public interface DataSource {
     public IndividualStatistics getTopSellingPizza();
     public IndividualStatistics getWorstSellingPizza();
     public ArrayList<IndividualStatistics> getAllPizzaSales();
+    public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo);
 }

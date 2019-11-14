@@ -8,8 +8,6 @@ import model.Pizza;
 import model.Topping;
 
 public class DBFacade implements DataSource{
-
-    
     
     @Override
     public ArrayList<Pizza> getAllPizza() {
@@ -112,5 +110,8 @@ public class DBFacade implements DataSource{
     public ArrayList<IndividualStatistics> getAllPizzaSales() {
         return new StaticsticsMapper().getAllPizzaSales();
     }
-
+    @Override
+    public ArrayList<IndividualStatistics> getCustomerOrders(int phoneNo){
+        return new StaticsticsMapper().getAllPizzaSales();
+    }
 }
